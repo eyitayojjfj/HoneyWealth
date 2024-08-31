@@ -9,7 +9,7 @@ const Navigation = () => {
   return (
     <Navbar collapseOnSelect expand="lg" className="cont">
     <Container >
-      <Navbar.Brand href="/" className='head'>HoneyWealth Fragrances</Navbar.Brand>
+      <Navbar.Brand href="/" className='head'><img src="/images/lg.jpg" width="70px" height="50px" alt="" /></Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="me-auto">

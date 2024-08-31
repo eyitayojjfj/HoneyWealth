@@ -1,13 +1,29 @@
 import React from 'react'
 import HomeCard from './HomeCard'
-
-
-
+import { GiDelicatePerfume } from "react-icons/gi";
+import { IoMdPricetag } from "react-icons/io";
+import { MdLockPerson } from "react-icons/md";
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../cart/cartSlice';
 
 const HomePage = () => {
-  const style = {
+
+  const dispatch = useDispatch();
+  
+
+
+  const container = {
     display: "grid",
     gridTemplateColumns: "1fr 1fr 1fr ",
+    gap: "10px",
+    paddingLeft: "90px",
+    paddingRight: "90px",
+    paddingTop: "90px",
+    
+  }
+  const style = {
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr 1fr  ",
     gap: "25px",
     paddingLeft: "60px",
     
@@ -26,20 +42,12 @@ const homer = [
   {"id": "010", "name": "Asad", "image": "/images/Asad 29k men.jpg",  "price": 29000},
   {"id": "011", "name": "Asad zanzebar", "image": "/images/Asad zanzebar 21k men.jpg", "price": 21000},
   {"id": "012", "name": "Baby Love Mist", "image": "/images/Baby LOve Mist 2.5k kids.jpg",  "price": 2500},
-  {"id": "013", "name": "Bakkarat Rouge", "image": "/images/Bakkarrat Rouge 19k unisex.jpg", "price": 19000},
-  {"id": "014", "name": "Body Mist", "image": "/images/Body Mist 3k fem.jpg", "price": 3000},
-  {"id": "015", "name": "Body Mist", "image": "/images/Body Mist2 2k female.jpg",  "price": 2000},
-  {"id": "016", "name": "Clive Doris", "image": "/images/Clive Doris 10k male.jpg", "price": 10000},
-  {"id": "017", "name": "Dimmah", "image": "/images/Dimmah 21.5k unisex.jpg",  "price": 21500},
-  {"id": "018", "name": "E'CLAT", "image": "/images/E'CLAT 50k female.jpg",  "price": 50000},
-  {"id": "019", "name": "Greatness Noir", "image":  "/images/Greatness Noir 2 7k men.jpg",  "price": 7000},
-  {"id": "020", "name": "Greatness Noir", "image":  "/images/Greatness Noir 7k men.jpg", "price": 7000},
 ]
   return (
     <div>
     <div>
      <section>
-    <h1>Discover a world of luxury scents <br /> tailored just for you.</h1>
+    <h1>Discover a world <br /> of luxury scents <br /> tailored just for you.</h1>
 
     <div ><button  className='btn2'><a href="/allproducts">SHOP NOW</a></button></div>
      {/* <div><img className='logo' src="/public/images/HoneyWealth.jpg" alt="" /></div>  */}
@@ -50,10 +58,32 @@ const homer = [
      
          {homer.map((product) => (
           <HomeCard img={product.image} name={product.name}
-           price={product.price}/>
+           price={product.price}   onAddToCart={() => dispatch(addToCart(product))}/>
          ))}
        
          </div>
+
+         <div style={container}>
+          <div className='honey'><h1><GiDelicatePerfume /></h1>
+          <h5>Best Quality</h5>
+          <p>At HoneyWealth Fragrances, we pride ourselves on delivering the finest quality fragrances. Each perfume is crafted using premium ingredients sourced from around the globe, ensuring that every scent embodies purity and sophistication. </p>
+          </div>
+
+          <div className='honey'><h1><IoMdPricetag /></h1>
+          <h5>Best Offers</h5>
+          <p>We believe that exceptional quality should be accessible. That’s why we offer incredible value through exclusive deals and promotions on our premium perfumes. Whether you're indulging in a signature scent or gifting someone special, you can enjoy our high-end fragrances at unbeatable prices. </p>
+          </div>
+
+          <div className='honey'><h1><MdLockPerson /></h1>
+          <h5>Secured Payments</h5>
+          <p>Your security is our priority. At [Your Perfume Business Name], we use the latest encryption technology to ensure that all transactions are safe and secure. Shop with confidence knowing that your personal and payment information is protected. Our secure payment options make your shopping experience smooth and worry-free.</p>
+          </div>
+          
+         </div>
+         <aside>
+          <h3>Experience the HoneyWealth Fragrances Difference</h3>
+          <p>Explore our collection and find your perfect scent today. For any inquiries or assistance, our friendly customer service team <br /> is here to help. Contact us at [phone number] or [email address], or visit us at [address].</p>
+         </aside>
     </div>
     
     </div>

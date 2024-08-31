@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { CartProvider } from './components/cart/CartContext'; // Import CartProvider
+
 import Navigation from './components/header/Navigation';
 import HomePage from './components/home/HomePage';
 import Products from './components/allproducts/Products';
@@ -21,7 +21,7 @@ import Checkout from './components/checkout/Checkout';
 
 function App() {
   return (
-    <CartProvider> {/* Wrap application with CartProvider */}
+
       <div>
         <Navigation />
         <Routes>
@@ -43,7 +43,7 @@ function App() {
         </Routes>
         <Footer />
       </div>
-    </CartProvider>
+   
   );
 }
 

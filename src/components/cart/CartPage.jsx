@@ -1,69 +1,50 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateQuantity, removeFromCart } from './cartSlice';
 
-const CartPage = () => {
-    const [cart, setCart] = useState([]);
+const Cart = () => {
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
 
-    useEffect(() => {
-        // Load cart items from local storage
-        const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
-        setCart(savedCart);
-    }, []);
+  const handleQuantityChange = (id, delta) => {
+    const item = cart.find((item) => item.id === id);
+    if (item) {
+      const newQuantity = item.quantity + delta;
+      if (newQuantity > 0) {
+        dispatch(updateQuantity({ id, quantity: newQuantity }));
+      }
+    }
+  };
 
-    // Adjust quantity of an item
-    const adjustQuantity = (id, amount) => {
-        const updatedCart = cart.map(item =>
-            item.id === id ? { ...item, quantity: Math.max(1, item.quantity + amount) } : item
-        );
-        setCart(updatedCart);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
-    };
+  const getTotalPrice = () => {
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
 
-    // Remove item from cart
-    const removeFromCart = (id) => {
-        const updatedCart = cart.filter(item => item.id !== id);
-        setCart(updatedCart);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
-    };
-
-    // Calculate total price
-    const getTotalPrice = () => {
-        return cart.reduce((total, item) => total + item.price * item.quantity, 0);
-    };
-
-    return (
-        <div className='cart-page'>
-            <h1>Your Cart</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {cart.map(item => (
-                        <tr key={item.id}>
-                            <td>{item.name}</td>
-                            <td>₦ {item.price}</td>
-                            <td>
-                                <button onClick={() => adjustQuantity(item.id, -1)}>-</button>
-                                {item.quantity}
-                                <button onClick={() => adjustQuantity(item.id, 1)}>+</button>
-                            </td>
-                            <td>₦ {item.price * item.quantity}</td>
-                            <td>
-                                <button onClick={() => removeFromCart(item.id)}>Remove</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            <h2>Total Price: ₦ {getTotalPrice()}</h2>
+  return (
+    <div>
+      <h2>Your Cart</h2>
+      {cart.length === 0 ? (
+        <p>Your cart is empty.</p>
+      ) : (
+        <div>
+          {cart.map((item) => (
+            <div key={item.id} className="cart-item">
+              <img src={item.image} alt={item.name} style={{ width: '100px' }} />
+              <h3>{item.name}</h3>
+              <p>₦{item.price}</p>
+              <div>
+                <button onClick={() => handleQuantityChange(item.id, -1)} disabled={item.quantity <= 1}>-</button>
+                <span>{item.quantity}</span>
+                <button onClick={() => handleQuantityChange(item.id, 1)}>+</button>
+              </div>
+              <button onClick={() => dispatch(removeFromCart(item.id))}>Remove</button>
+            </div>
+          ))}
+          <h3>Total Price: ₦{getTotalPrice()}</h3>
         </div>
-    );
+      )}
+    </div>
+  );
 };
 
-export default CartPage;
+export default Cart;
