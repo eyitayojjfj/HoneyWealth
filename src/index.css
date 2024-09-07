@@ -41,6 +41,7 @@ span{
   padding-right: 20px;
   border: none;
   cursor: pointer;
+  border-radius: 10px;
 }
 .btn2 a{
   color: black;
@@ -62,12 +63,16 @@ span{
 section{
   background-image: url(/images/bg2.jpg);
   background-repeat: no-repeat;
+  min-height: 700px;
   background-size: cover;
   background-position: center;
   color: white;
-  padding-top: 200px;
   padding-bottom: 300px;
-  padding-left: 80px;
+ display: flex;
+ justify-content: start;
+ padding:70px 70px;
+ flex-direction: column;
+ gap: 60px;
   
 }
 section h1{
@@ -90,7 +95,6 @@ section h1{
   margin-bottom: 75px;
 }
 .sec2{
-  padding-left: 50px;
   padding-bottom: 50px;
 }
 .sec h1{
@@ -102,7 +106,8 @@ section h1{
   padding-bottom: 1px;
   display:flex;
   justify-content: center;
-  padding-left: 20px;
+  
+ 
   padding-right: 20px;
 }
 .right{
@@ -110,13 +115,13 @@ section h1{
 }
 .fut{
   display: inline;
-  border-right: 2px solid black;
+ 
   padding-right: 10px;
 }
 .us{
   display: inline;
   padding-right: 30px;
-  border-right: 2px solid black;
+ 
 }
 .us ul {
    list-style: none;
@@ -131,7 +136,12 @@ section h1{
   align-items: center;
   margin: 0px auto;
   margin-top: 40px;
-  background-color: #6aa8f0;
+  padding-top: 30px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 40px;
+ 
+  background-color: white;
 }
 .scold{
   margin-top: 70px;

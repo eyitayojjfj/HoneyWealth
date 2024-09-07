@@ -4,15 +4,13 @@ import Card from 'react-bootstrap/Card';
 
 const HomeCard = ({name, img, price}) => {
   const style ={
-       height: "220px",
+       height: "250px",
 }
 
-  const onAddToCart = () => {
-    // Add the product to the cart
-  }
+  
 
   return (
-    <Card style={{ width: '18rem',  }}>
+    <Card >
     <Card.Img style={style} variant="top" src={img || "/images/212 Men NYC 85k men.jpg "} />
     <Card.Body>
    
@@ -20,7 +18,7 @@ const HomeCard = ({name, img, price}) => {
       <Card.Text>
       ₦ {price}
       </Card.Text>
-      <Button className='but' variant="primary" onClick={onAddToCart}>Add To Cart</Button>
+      <Button className='but' variant="primary">Add To Cart</Button>
       <span><i class="fa-regular fa-heart"></i></span>
     </Card.Body>
   </Card>

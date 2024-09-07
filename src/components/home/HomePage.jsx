@@ -1,14 +1,15 @@
 import React from 'react'
 import HomeCard from './HomeCard'
+import './HomePage.css'
 import { GiDelicatePerfume } from "react-icons/gi";
 import { IoMdPricetag } from "react-icons/io";
 import { MdLockPerson } from "react-icons/md";
-import { useDispatch } from 'react-redux';
-import { addToCart } from '../cart/cartSlice';
+
+
 
 const HomePage = () => {
 
-  const dispatch = useDispatch();
+ 
   
 
 
@@ -21,13 +22,7 @@ const HomePage = () => {
     paddingTop: "90px",
     
   }
-  const style = {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr 1fr  ",
-    gap: "25px",
-    paddingLeft: "60px",
-    
-}
+
   
 const homer = [
   {"id": "001", "name": "212 Men NYC", "image": "/images/212 Men NYC 85k men.jpg ",  "price": 85000},
@@ -46,19 +41,19 @@ const homer = [
   return (
     <div>
     <div>
-     <section>
+     <section className='section'>
     <h1>Discover a world <br /> of luxury scents <br /> tailored just for you.</h1>
 
-    <div ><button  className='btn2'><a href="/allproducts">SHOP NOW</a></button></div>
+    <div className='butt' ><button  className='btn2'><a href="/allproducts">SHOP NOW</a></button></div>
      {/* <div><img className='logo' src="/public/images/HoneyWealth.jpg" alt="" /></div>  */}
     </section>
     <div className='sec'>
     <div className='sec2'><h1>Explore Our Collection</h1></div>
-    <div className='container' style={style}>
+    <div className='container' >
      
          {homer.map((product) => (
           <HomeCard img={product.image} name={product.name}
-           price={product.price}   onAddToCart={() => dispatch(addToCart(product))}/>
+           price={product.price}   />
          ))}
        
          </div>

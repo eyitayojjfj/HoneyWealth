@@ -6,24 +6,17 @@ import { FaInstagram } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa6";
 import { FaSnapchat } from "react-icons/fa6";
 import { IoLogoTiktok } from "react-icons/io5";
+import './Footer.css'
 
 const Footer = () => {
 
-  const style = {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr 1fr 1fr ",
-    gap: "18px",
-    padding: "28px",
-    paddingLeft: "80px",
-   
-    
-}
+
 
 
   return (
     <div className='foot'>
     < footer >
-      <div style={style}>
+      <div className='grid'>
    <div className='fut'>
     <div><h5>ABOUT US</h5></div>
     <p>At Honeywealth Fragrances, we specialize in selling exquisite perfumes that captivate  the senses. Whether you're looking  for the perfect scent to express  your individuality or a gift that  leaves a lasting impression, our  curated collection has something for everyone.</p>
@@ -53,8 +46,9 @@ const Footer = () => {
     </div>
     </div>
 
+    <div className='right'><p>Copyright © 2024 HoneyWealth Fragrances.</p></div>
   </footer>
-  <div className='right'><p>Copyright © 2024 HoneyWealth Fragrances.</p></div>
+
   </div>
   )
 }
