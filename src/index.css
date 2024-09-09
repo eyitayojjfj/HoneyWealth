@@ -108,22 +108,19 @@ section h1{
   background-color: rgba(128, 128, 128, 0.347);
   padding-top: 30px;
   padding-bottom: 1px;
-  display:flex;
   justify-content: center;
-  
- 
   padding-right: 20px;
 }
 .right{
-  margin-top: 250px;
+   padding-top: 20px;
 }
 .fut{
-  display: inline;
+ 
  
   padding-right: 10px;
 }
 .us{
-  display: inline;
+ 
   padding-right: 30px;
  
 }

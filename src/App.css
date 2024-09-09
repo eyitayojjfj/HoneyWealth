@@ -16,6 +16,9 @@
     font-size: 17px;
     color: grey;
   }
+  aside{
+    padding: 15px;
+  }
   aside h3{
    text-align: center;
     padding-top: 40px;

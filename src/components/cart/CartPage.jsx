@@ -98,7 +98,7 @@ const CartPage = () => {
                     </div>
                 </div>
             )}
-            <Link to="/allproducts">Back to Products</Link>
+            <Link className='bck' to="/allproducts">Back to Products</Link>
         </div>
     );
 };

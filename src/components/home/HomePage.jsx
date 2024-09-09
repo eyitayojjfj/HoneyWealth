@@ -68,7 +68,7 @@ const HomePage = () => {
        
          </div>
 
-         <div style={container}>
+         <div className='container2' >
           <div className='honey'><h1><GiDelicatePerfume /></h1>
           <h5>Best Quality</h5>
           <p>At HoneyWealth Fragrances, we pride ourselves on delivering the finest quality fragrances. Each perfume is crafted using premium ingredients sourced from around the globe, ensuring that every scent embodies purity and sophistication. </p>

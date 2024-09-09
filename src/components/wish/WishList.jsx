@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import './WishList.css'
 
 const Wishlist = () => {
   const [wishlist, setWishlist] = useState([]);
@@ -19,7 +20,7 @@ const Wishlist = () => {
   };
 
   return (
-    <div>
+    <div className='wish'>
       <h1>My Wishlist</h1>
       {wishlist.length === 0 ? (
         <p>Your wishlist is empty!</p>
@@ -37,7 +38,7 @@ const Wishlist = () => {
               <Card.Text>
                 ₦ {product.price}
               </Card.Text>
-              <Button variant="danger" onClick={() => handleRemoveFromWishlist(product.name)}>Remove from Wishlist</Button>
+              <Button variant="primary" onClick={() => handleRemoveFromWishlist(product.name)}>Remove from Wishlist</Button>
             </Card.Body>
           </Card>
         ))

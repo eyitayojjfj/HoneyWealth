@@ -19,12 +19,22 @@ const ProductCard = ({ name, img, price, func }) => {
 
     try {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.push(product);
-      localStorage.setItem('cart', JSON.stringify(cart));
-      alert(`${name} added to cart!`);
+      
+      // Check if the product is already in the cart
+      const productInCart = cart.some(item => item.name === name);
+  
+      if (productInCart) {
+        alert(`${name} is already in the cart!`);
+      } else {
+        // Add product to cart
+        cart.push(product);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert(`${name} added to cart!`);
+      }
     } catch (error) {
       console.error("Failed to add product to cart", error);
     }
+  
   };
 
   const handleToggleWishlist = (event) => {
