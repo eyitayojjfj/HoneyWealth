@@ -3,6 +3,8 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { FaUser } from "react-icons/fa";
+
 
 
 const Navigation = () => {
@@ -20,8 +22,9 @@ const Navigation = () => {
         </Nav>
         <Nav>
           <Nav.Link href="/cart"><i  class="fa-solid fa-cart-shopping">0 </i></Nav.Link>
-          <NavDropdown title="ACCOUNT" id="collapsible-nav-dropdown" className='head2'>
-            <i class="fa-solid fa-user"></i ><NavDropdown.Item className='drop' href="/signin"><button className='btn'>LOG IN</button></NavDropdown.Item>
+          
+          <FaUser id='user' /> <NavDropdown  title="ACCOUNT" id="collapsible-nav-dropdown" className='head2'>
+           <NavDropdown.Item className='drop' href="/signin"><button className='btn'>LOG IN</button></NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item className='drop2' href="#action/3.2">
               MY ACCOUNT
@@ -31,6 +34,7 @@ const Navigation = () => {
            
            
           </NavDropdown>
+          
         </Nav>
       </Navbar.Collapse>
     </Container>

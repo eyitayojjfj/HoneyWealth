@@ -1,6 +1,8 @@
 .btn{
   background-color:  grey;
   color: aliceblue;
+  padding-right: 60px;
+  padding-left: 50px;
 }
 .cont{
   background-color: white;
@@ -19,6 +21,8 @@ span{
 .but{
   background-color: grey;
   color: white;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 .boot{
   display:flex;
@@ -181,14 +185,27 @@ section h1{
   text-decoration: none;
 }
 
-.fa-solid {
+.fa-solid  {
   font-size: 18px;
+  padding-right: 10px;
 }
 .fa-solid:hover{
   color: blue;
 }
+#user{
+  padding-top: 8px;
+  font-size: 35px;
+  padding-left: 20px;
+}
+#user:hover{
+  text-decoration: none;
+  color: blue;
+}
 .btn:hover{
   text-decoration: none;
+}
+.drop2{
+  font-size: 13px;
 }
 .drop2:hover{
   text-decoration: none;
