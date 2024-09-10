@@ -52,7 +52,7 @@ const HomePage = () => {
     <div>
     <div>
      <section className='section'>
-    <h1>Discover a hhhhhhhhhhhhhhhhhhhhhworld <br /> of luxury scents <br /> tailored just for you.</h1>
+    <h1>Discover a world <br /> of luxury scents <br /> tailored just for you.</h1>
 
     <div className='butt' ><button  className='btn2'><a href="/allproducts">SHOP NOW</a></button></div>
      {/* <div><img className='logo' src="/public/images/HoneyWealth.jpg" alt="" /></div>  */}

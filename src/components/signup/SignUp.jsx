@@ -35,7 +35,8 @@ export const SignUp = () => {
                 await setDoc(doc (db, 'Users', user.uid),{
                 email: user.email,
                 firstName: first,
-                lastName: last
+                lastName: last,
+                password: password
                 });
              }
             console.log('Account Created');

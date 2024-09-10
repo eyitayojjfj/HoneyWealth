@@ -26,7 +26,7 @@ const Navigation = () => {
           <FaUser id='user' /> <NavDropdown  title="ACCOUNT" id="collapsible-nav-dropdown" className='head2'>
            <NavDropdown.Item className='drop' href="/signin"><button className='btn'>LOG IN</button></NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item className='drop2' href="#action/3.2">
+            <NavDropdown.Item className='drop2' href="/account">
               MY ACCOUNT
             </NavDropdown.Item>
             <NavDropdown.Divider />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import Navigation from './components/header/Navigation';
 import HomePage from './components/home/HomePage';
@@ -18,13 +18,24 @@ import AboutPage from './components/about/AboutPage';
 import PrivacyPolicy from './components/privacy/PrivacyPolicy';
 import ProductDetails from './components/allproducts/ProductDetails';
 import Checkout from './components/checkout/Checkout';
+import Profile from './components/account/Profile';
+import { useState, useEffect } from 'react';
+import { auth } from './FireBase';
 
 function App() {
+  const [user, setUser] = useState();
+  useEffect(() =>{
+    auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+  })
   return (
 
       <div>
         <Navigation />
         <Routes>
+       <Route path="/account" element={<Profile/>} />
+
           <Route path="/" element={<HomePage />} />
           <Route path="/allproducts" element={<Products />} />
           <Route path="/product/:id" element={<ProductDetails />} />
@@ -33,8 +44,9 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/wish" element={<WishList />} />
           <Route path="/cart" element={<CartPage />} />
-          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signin" element={user ? <Navigate to='/account'/> : <SignIn />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/account" element={<Profile />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/about" element={<AboutPage />} />
