@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import { auth } from '../../FireBase';
+// import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { auth, db } from '../../FireBase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { setDoc, doc } from 'firebase/firestore';
+import { toast } from 'react-toastify';
+
 
 export const SignUp = () => {
     const [first, setFirst] = useState("");
@@ -12,7 +15,7 @@ export const SignUp = () => {
     const [password, setPassword] = useState("");
     const [again, setAgain] = useState("");
     const [error, setError] = useState("");
-    const navigate = useNavigate(); // Initialize useNavigate
+    // const navigate = useNavigate(); // Initialize useNavigate
 
     // Handle form submit
     const handleSubmit = async (e) => {
@@ -26,11 +29,27 @@ export const SignUp = () => {
 
         try {
             await createUserWithEmailAndPassword(auth, email, password);
+            const user = auth.currentUser;
+            console.log(user);
+             if (user){
+                await setDoc(doc (db, 'Users', user.uid),{
+                email: user.email,
+                firstName: first,
+                lastName: last
+                });
+             }
             console.log('Account Created');
-            // Redirect to home page after successful sign-up
-            navigate('/'); // Use navigate to redirect
+            toast.success('Registration Successful!', {
+                position: "top-center",
+            });
+
+            // navigate('/'); // Uncomment to use navigate for redirection
+
         } catch (error) {
-            console.error(error);
+            console.log(error);
+            toast.success(error.message, {
+                position: "bottom-center",
+            });
             setError(error.message); // Update error state to show the error message
         }
     };

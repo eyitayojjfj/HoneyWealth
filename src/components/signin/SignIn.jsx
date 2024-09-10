@@ -4,12 +4,14 @@ import React from 'react'
  import { useState } from "react"; 
  import { auth } from '../../FireBase';
  import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+ import { toast } from 'react-toastify';
+
+// import { useNavigate } from 'react-router-dom';
 
 
  const SignIn = () => {
 
-  const history = useNavigate();
+  // const history = useNavigate();
     
    const [mail, setMail] = useState ("")
      const [password, setPassword] = useState ("")
@@ -23,10 +25,17 @@ import { useNavigate } from 'react-router-dom';
          try {
          signInWithEmailAndPassword(auth, mail, password);
           console.log('Login-Successful');
-          history('/')
+          toast.success('Login Successful!', {
+            position: "top-center",
+        });
+          // history('/')
           
          } catch (error) {
           console.log(error);
+          toast.success(error.message, {
+            position: "bottom-center",
+        });
+          setError(error.message);
          }
           // console.log("Email: ", mail);
           // console.log("Password: ", password);
