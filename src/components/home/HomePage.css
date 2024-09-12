@@ -1,4 +1,4 @@
-/* .product-grid {
+ .product-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
@@ -80,7 +80,7 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         overflow: hidden;
         transition: transform 0.3s ease;
-        width: 220px;
+        width: 180px;
       }
   
     .product-card .card-body {
@@ -96,7 +96,7 @@
     }
     .product-card-img{
         height: 200px;
-        width: 220px;
+        width: 180px;
       }
   
     .stock {

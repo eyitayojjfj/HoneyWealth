@@ -92,29 +92,29 @@
       font-size: 1.5rem;
     }
     .product-card {
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        transition: transform 0.3s ease;
-        width: 220px;
-      }
-  
-    .product-card .card-body {
-      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      width: 180px;
     }
-  
-    .product-card .card-title {
-      font-size: 1rem;
+
+  .product-card .card-body {
+    padding: 10px;
+  }
+
+  .product-card .card-title {
+    font-size: 1rem;
+  }
+
+  .product-card .card-text {
+    font-size: 0.9rem;
+  }
+  .product-card-img{
+      height: 200px;
+      width: 180px;
     }
-  
-    .product-card .card-text {
-      font-size: 0.9rem;
-    }
-    .product-card-img{
-        height: 200px;
-        width: 220px;
-      }
   
     .stock {
       font-size: 0.8rem;
