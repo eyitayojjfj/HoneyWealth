@@ -73,6 +73,8 @@
         grid-template-columns: repeat(2, 1fr);
         padding-right: 20px;
         padding-left: 30px;
+        padding: 80px;
+        gap: 15px ;
       }
       .product-card {
         border: 1px solid #ddd;
@@ -95,7 +97,7 @@
       font-size: 0.9rem;
     }
     .product-card-img{
-        height: 200px;
+      height: 140px;
         width: 180px;
       }
   
@@ -104,8 +106,9 @@
     }
   
     .but {
-      font-size: 0.9rem;
-      padding: 8px 12px;
+      font-size: 14px;
+   padding-top: 0px;
+   padding-bottom: 0px;
     }
     
 }

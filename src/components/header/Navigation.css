@@ -11,7 +11,7 @@
 }
 
 .item-count {
-    font-size: 15px;
+    font-size: 10px;
     color: white;
     background: red; 
     border-radius: 50%;
@@ -35,6 +35,7 @@
     .cart {
         margin-left: 10px; 
         margin-top: 10px;
+        margin-left: -90px;
     }
     
     .item-count {
@@ -42,11 +43,19 @@
         padding: 3px 6px; 
         top: -5px; 
         right: -5px; 
+        padding-left: -90px;
     }
+    .head{
+        padding-left: 150px;
+      }
     
     .menu {
-        margin-left: 10px; 
+        margin-left: -530px; 
     }
+    .close {
+     
+    }
+    
 }
 
 @media (max-width: 576px) {
