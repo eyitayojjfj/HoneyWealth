@@ -1,7 +1,4 @@
-/* Product.css */
-
-/* Base styles for the Products component */
-.fum {
+/* .fum {
     padding: 20px;
     
   }
@@ -24,7 +21,6 @@
     width: 280px;
   }
   
-  /* Grid layout for product cards */
   .product-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -34,7 +30,6 @@
     
   }
   
-  /* Product card styling */
   .product-card {
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -65,19 +60,17 @@
     color: #555;
   }
   
-  /* .stock {
+   .stock {
     font-size: 0.9rem;
     color: #4CAF50;
     margin-bottom: 10px;
-  } */
+  }
   
   .but {
     margin-top: 10px;
   }
   
-  /* Media Queries */
   
-  /* For tablets and small laptops */
   @media (max-width: 1024px) {
     .product-grid {
       grid-template-columns: repeat(2, 1fr);
@@ -85,7 +78,6 @@
     }
   }
   
-  /* For mobile phones */
   @media (max-width: 768px) {
     .product-grid {
       grid-template-columns: repeat(2, 1fr);
@@ -134,4 +126,4 @@
       padding: 8px 12px;
     }
   }
-  
+   */

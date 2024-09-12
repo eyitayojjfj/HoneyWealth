@@ -34,7 +34,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.3s ease;
-    width: 280px;
+    width: 280px ;
   }
   
   .product-card:hover {
@@ -58,11 +58,11 @@
     color: #555;
   }
   
-  /* .stock {
+   .stock {
     font-size: 0.9rem;
     color: #4CAF50;
     margin-bottom: 10px;
-  } */
+  } 
   
   .but {
     margin-top: 10px;
@@ -129,7 +129,7 @@
 
 
 
-  /* Container styling */
+  
 .container {
     padding: 0 15px;
   }
@@ -137,7 +137,6 @@
     padding-bottom: 20px;
   }
   
-  /* Card styling */
   .card {
     border: none;
     border-radius: 8px;
@@ -146,32 +145,27 @@
     width: 600px; 
   }
   
-  /* Card image styling */
   .card-img {
     width: 300px;
     height: 250px;
 
   }
   
-  /* Card body styling */
   .card-body {
     padding: 20px;
   }
   
-  /* Card title styling */
   .card-title {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
   }
   
-  /* Card text styling */
   .card-text {
     font-size: 18px;
     margin-bottom: 20px;
   }
   
-  /* Button styling */
   .btn {
     background-color: #007bff;
     color: #fff;
@@ -186,7 +180,6 @@
     background-color: #0056b3;
   }
   
-  /* Alert styling */
   .alert {
     color: red;
     font-size: 18px;
@@ -194,7 +187,6 @@
     padding: 20px;
   }
   
-  /* Responsive styles */
   @media (max-width: 768px) {
     .container {
       padding: 0 10px;
@@ -207,6 +199,7 @@
   
     .card-img {
       height: 300px;
+      
     }
   
     .card-title {
@@ -242,4 +235,4 @@
     }
   }
   
-  
+   
