@@ -96,13 +96,16 @@
       font-size: 1.5rem;
     }
     .product-card {
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        transition: transform 0.3s ease;
-        width: 180px;
-      }
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      width: 180px;
+      display: flex;
+    justify-content: center; 
+    align-items: center;
+    }
   
     .product-card .card-body {
       padding: 10px;
@@ -125,9 +128,18 @@
     }
   
     .but {
-      font-size: 14px;
-   padding-top: 0px;
-   padding-bottom: 0px;
+    
+      font-size: 10px; 
+    padding: 10px 80px; 
+    border-radius: 5px; 
+    color: white;
+    text-align: center; 
+    white-space: nowrap; 
+    display: inline-block; 
+    cursor: pointer;
+    text-decoration: none; 
+  
+    
     }
   }
   

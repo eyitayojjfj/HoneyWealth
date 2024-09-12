@@ -100,6 +100,9 @@
       overflow: hidden;
       transition: transform 0.3s ease;
       width: 180px;
+      display: flex;
+    justify-content: center; 
+    align-items: center;
     }
 
   .product-card .card-body {
@@ -123,9 +126,18 @@
     }
   
     .but {
-      font-size: 14px;
-      padding-top: 0px;
-      padding-bottom: 0px;
+    
+      font-size: 10px; 
+    padding: 10px 80px; 
+    border-radius: 5px; 
+    color: white;
+    text-align: center; 
+    white-space: nowrap; 
+    display: inline-block; 
+    cursor: pointer;
+    text-decoration: none; 
+  
+    
     }
   }
 

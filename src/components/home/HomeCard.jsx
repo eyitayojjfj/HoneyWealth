@@ -77,7 +77,7 @@ return (
             style={{ color: isInWishlist ? 'red' : 'gray' }} 
             onClick={handleToggleWishlist}
           ></i></span>
-          <Button className='but' variant="primary" onClick={handleAddToCart}>Add To Cart</Button>
+          <Button className='but' variant="primary" onClick={handleAddToCart}>ADD TO CART</Button>
         
         </Card.Text>
         </Card.Body>

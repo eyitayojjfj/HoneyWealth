@@ -4,10 +4,10 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FaUser } from 'react-icons/fa';
-import { CiMenuBurger } from "react-icons/ci";
+import { RiMenu2Line } from "react-icons/ri";
 import { IoCloseOutline } from 'react-icons/io5';
-import { getCartItemCount } from './cartUtils'; // Import the utility function
-import './Navigation.css'; // Import your custom CSS file
+import { getCartItemCount } from './cartUtils'; 
+import './Navigation.css'; 
 
 const Navigation = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -18,14 +18,11 @@ const Navigation = () => {
   };
 
   useEffect(() => {
-    // Update cart count on component mount
     setCartCount(getCartItemCount());
 
-    // Optionally, add an event listener if cart can be updated without a full page refresh
     const updateCartCount = () => setCartCount(getCartItemCount());
     window.addEventListener('storage', updateCartCount);
 
-    // Clean up event listener on component unmount
     return () => window.removeEventListener('storage', updateCartCount);
   }, []);
 
@@ -37,7 +34,7 @@ const Navigation = () => {
         </Navbar.Brand>
 
         {isCollapsed ? (
-          <CiMenuBurger
+          <RiMenu2Line
             aria-controls="responsive-navbar-nav"
             className='menu d-lg-none'
             onClick={handleToggle}
