@@ -2,17 +2,18 @@ import React from 'react'
 import WomenCard from './WomenCard'
 import female from './womendata'
 import { useNavigate } from "react-router-dom";
+import './Women.css'
 
 
 const WomenPage = () => {
 
-  const style = {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr 1fr ",
-    gap: "25px",
-     paddingLeft: "90px"
+//   const style = {
+//     display: "grid",
+//     gridTemplateColumns: "1fr 1fr 1fr ",
+//     gap: "25px",
+//      paddingLeft: "90px"
    
-}
+// }
 
 const navigate = useNavigate();
 
@@ -61,7 +62,7 @@ const openProductDetails = (id) => {
     <div className='fum'>
       <div className='gender'><h1>Women</h1><br /><h3> Indulge in our array of delicate and enchanting perfumes, <br /> perfect for any occasion.
       </h3></div>
-    <div style={style}>
+    <div className='product-grid'>
     {female.map((product) => (
      <WomenCard img={product.image} name={product.name}
       price={product.price} func={() => openProductDetails(product.id)}/>

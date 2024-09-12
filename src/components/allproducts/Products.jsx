@@ -2,19 +2,19 @@ import React from 'react'
 import ProductCard from './ProductCard'
 import { useNavigate } from "react-router-dom";
 import perfumes from '../../../productdata';
+ import './Products.css'
 
 const Products = () => {
 
   
 
-    const style = {
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr 1fr ",
-        gap: "25px",
+    // const style = {
+    //     display: "grid",
+    //     gridTemplateColumns: "1fr 1fr 1fr ",
+    //     gap: "25px",
+    //      paddingLeft: "90px"
        
-         paddingLeft: "90px"
-       
-    }
+    // }
 
 
     // const perfumes = [
@@ -107,7 +107,7 @@ const Products = () => {
       <div className='scoot'><h1>Browse our full range of fragrances</h1>
   
       </div>
-      <div className='boot' style={style}>
+      <div className='product-grid' >
          {perfumes.map((product) => (
           <ProductCard   img={product.image} name={product.name}
            price={product.price}    func={() => openProductDetails(product.id)}/>

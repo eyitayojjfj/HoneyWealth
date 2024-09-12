@@ -1,6 +1,5 @@
 import React from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
-
+import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import Navigation from './components/header/Navigation';
 import HomePage from './components/home/HomePage';
 import Products from './components/allproducts/Products';
@@ -21,6 +20,8 @@ import Checkout from './components/checkout/Checkout';
 import Profile from './components/account/Profile';
 import { useState, useEffect } from 'react';
 import { auth } from './FireBase';
+import PrivateRoute from './components/account/PrivateRoute';
+import AddProduct from './components/allproducts/AddProducts';
 
 function App() {
   const [user, setUser] = useState();
@@ -33,13 +34,17 @@ function App() {
 
       <div>
         <Navigation />
+<Outlet />
         <Routes>
+
        <Route path="/account" element={<Profile/>} />
 
           <Route path="/" element={<HomePage />} />
           <Route path="/allproducts" element={<Products />} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/men" element={<MenPage />} />
+          <Route path="/men" element={<PrivateRoute/>} />
+          <Route path="/add-product" element={<AddProduct/>} />
           <Route path="/women" element={<WomenPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/wish" element={<WishList />} />

@@ -1,80 +1,56 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import PropTypes from 'prop-types';
-import perfumes from '../../../productdata'; 
+import perfumes from '../../../productdata'; // Ensure this path is correct
+import './Products.css'; // Import the CSS file
 
-const ProductDetails = ({name, image, price,}) => {
-  const AddToCart = (event) => {
-
-    event.stopPropagation();
-        const product = {name, image, price };
-
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-        cart.push(product);
-
-        localStorage.setItem('cart', JSON.stringify(cart));
-
-        alert(`${name} added to cart!`);
-    };
-
-
-
-  const { id } = useParams(); 
+const ProductDetails = () => {
+  const { id } = useParams();
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-   
-    const foundProduct = perfumes.find((p) => p.id === id);
-    if (foundProduct) {
-      setProduct(foundProduct);
-    } else {
-      setProduct(null); 
-    }
+    const foundProduct = perfumes.find(p => p.id === id);
+    setProduct(foundProduct || null);
   }, [id]);
 
-  if (!product) {
-    return <div>Product not found</div>; 
-  }
+  const AddToCart = (event) => {
+    event.stopPropagation();
+    if (product) {
+      const { name, image, price } = product;
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push({ name, image, price });
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${name} added to cart!`);
+    }
+  };
 
-  
-  
+  if (!product) {
+    return <div className="alert">Product not found</div>;
+  }
 
   return (
     <div className="container mt-4">
-      <Card style={{ width: '980px', height: '700px',  margin: 'auto' }}>
+      <h1>Product Details</h1>
+      <Card className="card" >
         <Card.Img
           variant="top"
-          src={product.image  }
-          alt='image'
-          style={{ height: '280px', width: '380px'}}
+          src={product.image}
+          alt={product.name}
+          className="card-img"
         />
-        <Card.Body>
-          <Card.Title>{product.name}</Card.Title>
-          <Card.Text>
+        <Card.Body className="card-body">
+          <Card.Title className="card-title">{product.name}</Card.Title>
+          <Card.Text className="card-text">
             <strong>Price:</strong> ₦ {product.price}
           </Card.Text>
-          <Button variant="primary" onClick={AddToCart}>
+          <Button onClick={AddToCart}>
             Add To Cart
           </Button>
         </Card.Body>
       </Card>
     </div>
   );
-};
-
-// PropTypes validation for local data
-ProductDetails.propTypes = {
-  product: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    img: PropTypes.string,
-    description: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number,
-  }),
 };
 
 export default ProductDetails;

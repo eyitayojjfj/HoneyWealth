@@ -52,15 +52,14 @@ const HomePage = () => {
     <div>
     <div>
      <section className='section'>
-    <h1>Discover a world <br /> of luxury scents <br /> tailored just for you.</h1>
+    <h1>Touring You Round The World of Fragrance.</h1>
 
     <div className='butt' ><button  className='btn2'><a href="/allproducts">SHOP NOW</a></button></div>
      {/* <div><img className='logo' src="/public/images/HoneyWealth.jpg" alt="" /></div>  */}
     </section>
     <div className='sec'>
     <div className='sec2'><h1>Explore Our Collection</h1></div>
-    <div className='container' >
-     
+    <div className='product-grid' >
          {homer.map((product) => (
           <HomeCard img={product.image} name={product.name}
            price={product.price} func={() => openProductDetails(product.id)}  />

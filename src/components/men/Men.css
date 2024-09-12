@@ -1,10 +1,23 @@
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    padding-left: 90px;
-    justify-content: center;
+/* Product.css */
+
+/* Base styles for the Products component */
+.fum {
+    padding: 20px;
     
+  }
+  
+  .gender{
+    margin-top: 70px;
+    padding-bottom: 50px;
+    padding-left: 80px;
+  }
+  .gender h1{
+    font-weight: 700;
+    font-size: 50px;
+  }
+  .gender h3{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+   
   }
   .product-card-img{
     height: 200px;
@@ -61,22 +74,33 @@
   .but {
     margin-top: 10px;
   }
-
-@media (max-width: 768px) {
-    .section h1{
-        text-align: center;
-        font-size: 40px;
-    }
-.section .butt{
-        text-align: center;
-    }
-
+  
+  /* Media Queries */
+  
+  /* For tablets and small laptops */
+  @media (max-width: 1024px) {
     .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-        padding-right: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      padding-right: 20px;
         padding-left: 30px;
-      }
-      .product-card {
+    }
+  }
+  
+  /* For mobile phones */
+  @media (max-width: 768px) {
+    .product-grid {
+      grid-template-columns: repeat(2, 1fr);
+      padding-left: 10px;
+    }
+  
+    .fum {
+      padding: 0 10px;
+    }
+    
+    .scoot h1 {
+      font-size: 1.5rem;
+    }
+    .product-card {
         border: 1px solid #ddd;
         border-radius: 8px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -109,40 +133,5 @@
       font-size: 0.9rem;
       padding: 8px 12px;
     }
-    
-}
-@media (max-width: 1024px) {
-    .product-grid {
-      grid-template-columns: repeat(3, 1fr);
-      padding-left: 20px;
-    }
   }
-
-@media (max-width:560px) {
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-        padding-left: 10px;
-      }
-}
-.container2{
-    display: grid;
-   grid-template-columns: repeat(3, 1fr) ;
-    gap: 10px;
-    padding: 10px;
-    justify-content: center;
-   align-items: center;
-   max-width: 1000px;
-   margin: 0px auto;
-   text-align: center;
-   padding-top: 60px;
-}
-@media (max-width:768px) {
-    .container2{
-       grid-template-columns: repeat(1, 1fr) ;
-        gap: 10px;
-      text-align: center;
-       padding: 10px;
-       justify-content: center;
-       align-items: center;padding-left: 25px;
-    }
-}
+  

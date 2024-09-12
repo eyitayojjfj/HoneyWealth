@@ -30,6 +30,8 @@ export const SignUp = () => {
         try {
             await createUserWithEmailAndPassword(auth, email, password);
             const user = auth.currentUser;
+            localStorage.setItem('token', user.accessToken);
+            localStorage.setItem('user', JSON.stringify(user));
             console.log(user);
              if (user){
                 await setDoc(doc (db, 'Users', user.uid),{
@@ -43,6 +45,7 @@ export const SignUp = () => {
             toast.success('Registration Successful!', {
                 position: "top-center",
             });
+            window.location.href = '/signin'
 
             // navigate('/'); // Uncomment to use navigate for redirection
 

@@ -2,19 +2,20 @@ import React from 'react'
 import MenCard from './MenCard'
 import { useNavigate } from "react-router-dom";
 import perfumes from './mendata';
+import './Men.css'
 
 
 
 const MenPage = () => {
 
-  const style = {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr 1fr ",
-    gap: "25px",
+  // const style = {
+  //   display: "grid",
+  //   gridTemplateColumns: "1fr 1fr 1fr ",
+  //   gap: "25px",
    
-     paddingLeft: "90px"
+  //    paddingLeft: "90px"
    
-}
+
 const navigate = useNavigate();
 
 // handle open product details
@@ -58,7 +59,7 @@ const openProductDetails = (id) => {
     <div className='fum'>
       <div className='gender'><h1>Men</h1><br /><h3>Dive into our selection of bold, sophisticated scents <br /> designed to make a statement.
       </h3></div>
-    <div style={style}>
+    <div className='product-grid'>
          {perfumes.map((product) => (
           <MenCard img={product.image} name={product.name}
            price={product.price} func={() => openProductDetails(product.id)}/>

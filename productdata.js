@@ -70,8 +70,6 @@ const perfumes = [
     {"id": "066", "name": "Washwashah", "image": "/images/Washwashah 20k female.jpg ",  "price": 20000},
     {"id": "066", "name": "Yves Saint Laurent", "image": "/images/Yves Saint Laurent 50k unisex.jpg ",  "price": 50000},
     {"id": "067", "name": "Zara Set", "image": "/images/Zara set 22k female.jpg",  "price": 22000},
-    {"id": "067", "name": "Zara Set", "image": "/images/Zara set 22k female.jpg",  "price": 22000},
-    {"id": "067", "name": "Zara Set", "image": "/images/Zara set 22k female.jpg",  "price": 22000},
     {"id": "068", "name": "Zara Set", "image": "/images/Zara set2 25k men.jpg",  "price": 25000},
     {"id": "069", "name": "Zara Set", "image": "/images/Zara set3 22k FEmale.jpg ",  "price": 22000}
 

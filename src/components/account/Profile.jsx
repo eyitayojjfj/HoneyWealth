@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { auth, db } from '../../FireBase'; // Adjust the import path as necessary
 import { doc, getDoc } from 'firebase/firestore';
 import { signOut } from 'firebase/auth';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import './ProfilePage.css'
 
@@ -47,9 +47,9 @@ const Profile = () => {
     const handleLogout = async () => {
         try {
             await signOut(auth);
-            toast.success('Logged out successfully!', {
-                position: "top-center",
-            });
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            alert(`${userData.firstName} Logged out successfully`);
             navigate('/signin'); // Redirect to sign-in page after logout
         } catch (err) {
             console.error(err);
@@ -68,6 +68,8 @@ const Profile = () => {
     }
 
     return (
+      
+      
         <div className='profile'>
             {userData ? (
                 <div className='profile-info'>

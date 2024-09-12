@@ -26,7 +26,7 @@ const Footer = () => {
     <div><h5>CONTACT US</h5></div>
     <p><IoLocationSharp />CITS University Of Lagos</p>
     <p><FaPhone />+234 704 819 8913</p>
-    <p><BiLogoGmail />osenioyinkansola171206@gmail.com</p>
+    <p><BiLogoGmail /> honeywealth.fragrances@gmail.com</p>
     </div>
   
     <div className='us'>

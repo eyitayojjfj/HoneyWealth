@@ -7,6 +7,9 @@ import './CartPage.css'; // Assuming you have a CSS file for styles
 const CartPage = () => {
     const [cart, setCart] = useState([]);
 
+    
+  
+
     useEffect(() => {
         try {
             // Load cart items from localStorage

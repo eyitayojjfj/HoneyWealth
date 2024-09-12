@@ -65,20 +65,22 @@ const WomenCard = ({ name, img, price, func }) => {
   };
 
   return (
-    <Card style={{ width: '18rem' }} onClick={func}>
-      <Card.Img style={style} variant="top" src={img || "/images/Ajiwad 20k female.jpg"} alt={`Image of ${name}`} />
+    <Card className='product-card' onClick={func}>
+      <Card.Img className='product-card-img' variant="top" src={img || "/images/Ajiwad 20k female.jpg"} alt={`Image of ${name}`} />
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <p className='stock'>Available</p>
         <Card.Text>
           ₦ {price}
-        </Card.Text>
-        <Button className='but' variant="primary" onClick={handleAddToCart}>Add To Cart</Button>
-        <span><i 
+          <span><i 
             className={`fa-heart${isInWishlist ? ' fa-solid' : ' fa-regular'}`} 
             style={{ color: isInWishlist ? 'red' : 'gray' }} 
             onClick={handleToggleWishlist}
           ></i></span>
+          <Button className='but' variant="primary" onClick={handleAddToCart}>Add To Cart</Button>
+        
+        </Card.Text>
+        
       </Card.Body>
     </Card>
   );
