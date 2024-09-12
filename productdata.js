@@ -62,7 +62,7 @@ const perfumes = [
     {"id": "058", "name": "Supremacy In OUD", "image": "/images/Supremacy In OUD 300k men.jpg ",  "price": 300000},
     {"id": "059", "name": "Suspenso Combo", "image": "/images/suspenso Combo 15k men.jpg ",  "price": 15000},
     {"id": "060", "name": "Tabac", "image": "/images/Tabac 20k men.jpg ",  "price": 20000},
-    {"id": "061", "name": "Tom Ford Ombre Leather", "image": "//images/Tom Ford Ombre Leather 250k men.jpg",  "price": 250000},
+    {"id": "061", "name": "Tom Ford Ombre Leather", "image": "/images/Tom Ford Ombre Leather 250k men.jpg",  "price": 250000},
     {"id": "062", "name": "Touch Oil", "image": "/images/Touch Oil 1.5k uni.jpg ",  "price": 1500},
     {"id": "063", "name": "Victoria's Secret Combo", "image": "/images/Victoria secret combo 18k female.jpg",  "price": 18000},
     {"id": "064", "name": "Victoria's Secret Body Mist", "image": "/images/Victorias Secret Body Mist 4.5k.jpg",  "price": 4500},
