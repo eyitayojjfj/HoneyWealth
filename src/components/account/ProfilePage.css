@@ -1,5 +1,8 @@
 .profile{
-    padding-left: 90px;
     padding-top: 5%;
     padding-bottom: 70px;
+}
+.profile-info{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
 }

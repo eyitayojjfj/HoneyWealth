@@ -7,3 +7,22 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     padding-bottom: 30px;
 }
+.wish-button{
+    margin-top: 10px;
+    background-color:  grey;
+    color: aliceblue;
+    padding-right: 40px;
+    padding-left: 40px;
+}
+@media (max-width: 768px) {
+    .wish-button{
+        margin-top: 10px;
+        background-color:  grey;
+        color: aliceblue;
+        font-size: 15px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+}

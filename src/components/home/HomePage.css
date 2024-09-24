@@ -1,3 +1,51 @@
+section{
+  background-image: url(/images/bg2.jpg);
+  background-repeat: no-repeat;
+  min-height: 700px;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding-bottom: 300px;
+ display: flex;
+ justify-content: start;
+ padding:70px 70px;
+ flex-direction: column;
+ gap: 60px;
+  
+}
+section h1{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 60px;
+}
+.sec{
+  padding-top: 80px;
+  margin-bottom: 75px;
+}
+.sec2{
+  padding-bottom: 50px;
+  padding-left: 30px;
+}
+.sec h1{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.btn2{
+  background-color: white;
+  color: black;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.btn2 a{
+  color: black;
+}
+.btn2 a:link{
+  text-decoration: none;
+  
+}
  .product-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -58,7 +106,24 @@
   
   .but {
     margin-top: 10px;
+    background-color:  grey;
+    color: aliceblue;
+    padding-right: 40px;
+    padding-left: 40px;
   }
+  .detail-button{
+    margin-top: 10px;
+    background-color:  grey;
+    font-size: 20px;
+    color: aliceblue;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 140px;
+    padding-left: 140px;
+  }#detail{
+    margin-bottom: 150px;
+   }
+
 
 @media (max-width: 768px) {
     .section h1{
@@ -110,16 +175,12 @@
   
     .but {
     
-      font-size: 10px; 
-    padding: 10px 80px; 
-    border-radius: 5px; 
-    color: white;
-    text-align: center; 
-    white-space: nowrap; 
-    display: inline-block; 
-    cursor: pointer;
-    text-decoration: none; 
-  
+      margin-top: 10px;
+      font-size: 14px;
+      background-color:  grey;
+      color: aliceblue;
+      padding-right: 30px;
+      padding-left: 30px;
     
     }
 }
@@ -156,5 +217,15 @@
        padding: 10px;
        justify-content: center;
        align-items: center;padding-left: 25px;
+    }
+    .detail-button{
+      margin-top: 10px;
+      background-color:  grey;
+      font-size: 20px;
+      color: aliceblue;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      padding-right: 100px;
+      padding-left: 100px;
     }
 } 

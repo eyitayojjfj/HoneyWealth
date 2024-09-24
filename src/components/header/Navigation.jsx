@@ -26,6 +26,8 @@ const Navigation = () => {
     return () => window.removeEventListener('storage', updateCartCount);
   }, []);
 
+  
+
   return (
     <Navbar collapseOnSelect expand="lg" className="cont" expanded={!isCollapsed}>
       <Container>
@@ -61,7 +63,7 @@ const Navigation = () => {
             <FaUser id='user' />
             <NavDropdown title="ACCOUNT" id="collapsible-nav-dropdown" className='head3'>
               <NavDropdown.Item className='drop' href="/signin">
-                <button className='btn'>LOG IN</button>
+                <button className='login-btn'>LOG IN</button>
               </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item className='drop2' href="/account">

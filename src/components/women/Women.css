@@ -68,13 +68,34 @@
   
   .but {
     margin-top: 10px;
+    background-color:  grey;
+    color: aliceblue;
+    padding-right: 40px;
+    padding-left: 40px;
   }
+  .detail-button{
+    margin-top: 10px;
+    background-color:  grey;
+    font-size: 20px;
+    color: aliceblue;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 140px;
+    padding-left: 140px;
+  }
+  .detail{
+   margin-bottom: 30px;
+  }
+  #detail{
+    margin-bottom: 150px;
+   }
   
   
   @media (max-width: 1024px) {
     .product-grid {
       grid-template-columns: repeat(2, 1fr);
       padding-left: 20px;
+      padding-top: -9px;
     }
   }
   
@@ -88,6 +109,11 @@
   
     .fum {
       padding: 0 10px;
+    }
+    .gender{
+      margin-top: 40px;
+      padding-bottom: 10px;
+      padding-left: 80px;
     }
     
     .scoot h1 {
@@ -124,19 +150,26 @@
     .stock {
       font-size: 0.8rem;
     }
+    .detail-button{
+      margin-top: 10px;
+      background-color:  grey;
+      font-size: 20px;
+      color: aliceblue;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      padding-right: 100px;
+      padding-left: 100px;
+    }
+    
   
     .but {
     
-      font-size: 10px; 
-    padding: 10px 80px; 
-    border-radius: 5px; 
-    color: white;
-    text-align: center; 
-    white-space: nowrap; 
-    display: inline-block; 
-    cursor: pointer;
-    text-decoration: none; 
-  
+      margin-top: 10px;
+      font-size: 14px;
+      background-color:  grey;
+      color: aliceblue;
+      padding-right: 30px;
+      padding-left: 30px;
     
     }
   }

@@ -6,6 +6,7 @@ import { auth, db } from '../../FireBase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { setDoc, doc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
+import './signin.css'
 
 
 export const SignUp = () => {
@@ -15,13 +16,10 @@ export const SignUp = () => {
     const [password, setPassword] = useState("");
     const [again, setAgain] = useState("");
     const [error, setError] = useState("");
-    // const navigate = useNavigate(); // Initialize useNavigate
 
-    // Handle form submit
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Basic validation
         if (password !== again) {
             setError("Passwords do not match");
             return;
@@ -38,23 +36,24 @@ export const SignUp = () => {
                 email: user.email,
                 firstName: first,
                 lastName: last,
-                password: password
+                password: password,
+                photo: ''
                 });
              }
             console.log('Account Created');
-            toast.success('Registration Successful!', {
+           alert('Registration Successful!', {
                 position: "top-center",
             });
             window.location.href = '/signin'
 
-            // navigate('/'); // Uncomment to use navigate for redirection
+             navigate('/'); 
 
         } catch (error) {
             console.log(error);
             toast.success(error.message, {
                 position: "bottom-center",
             });
-            setError(error.message); // Update error state to show the error message
+            setError(error.message); 
         }
     };
 
@@ -119,11 +118,11 @@ export const SignUp = () => {
                             onChange={(e) => setAgain(e.target.value)}
                         />
                     </Form.Group>
-
-                    <p>Already Have An Account? <a href="/signin">Sign In Here</a></p>
-                    <Button variant="primary" type="submit">
+                    <Button className='sign-button' variant="primary" type="submit">
                         Continue
-                    </Button>
+                    </Button>  
+                    <p>Already Have An Account? <a href="/signin">Sign In Here</a></p>
+                  
                     {error && <div className='error-msg'>{error}</div>}
                 </form>
             </div>

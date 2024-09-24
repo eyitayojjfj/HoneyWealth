@@ -1,41 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import { auth, db } from '../../FireBase'; // Adjust the import path as necessary
-import { doc, getDoc } from 'firebase/firestore';
+import { auth, db } from '../../FireBase'; 
 import { signOut } from 'firebase/auth';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import './ProfilePage.css'
+import { doc, getDoc } from 'firebase/firestore';
+import './ProfilePage.css';
 
 const Profile = () => {
-    const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
+    const [userData, setUserData] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
+        const currentUser = auth.currentUser;
+
+        if (!currentUser) {
+            navigate('/signin');
+            return;
+        }
+
         const fetchUserData = async () => {
-            const user = auth.currentUser;
-
-            if (!user) {
-                navigate('/signin'); // Redirect if not authenticated
-                return;
-            }
-
             try {
-                const userDoc = doc(db, 'Users', user.uid);
-                const docSnap = await getDoc(userDoc);
-
-                if (docSnap.exists()) {
-                    setUserData(docSnap.data());
+                const userDocRef = doc(db, 'Users', currentUser.uid);
+                const userDoc = await getDoc(userDocRef);
+                
+                if (userDoc.exists()) {
+                    setUserData(userDoc.data());
                 } else {
-                    setError("No user data found.");
+                    toast.error('User data not found.');
                 }
-            } catch (err) {
-                console.error(err);
-                toast.error("Error fetching user data.", {
-                    position: "bottom-center",
-                });
-                setError(err.message);
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+                toast.error('Error fetching user data.');
             } finally {
                 setLoading(false);
             }
@@ -47,10 +43,8 @@ const Profile = () => {
     const handleLogout = async () => {
         try {
             await signOut(auth);
-            localStorage.removeItem('token');
-            localStorage.removeItem('user');
-            alert(`${userData.firstName} Logged out successfully`);
-            navigate('/signin'); // Redirect to sign-in page after logout
+            toast.success('Logged out successfully', { position: "bottom-center" });
+            navigate('/signin');
         } catch (err) {
             console.error(err);
             toast.error('Error logging out. Please try again.', {
@@ -60,24 +54,20 @@ const Profile = () => {
     };
 
     if (loading) {
-        return <div>Loading...</div>;
-    }
-
-    if (error) {
-        return <div className='error-msg'>{error}</div>;
+        return <div className="loading-spinner">Loading...</div>;
     }
 
     return (
-      
-      
-        <div className='profile'>
+        <div className='profile' style={{ display: 'flex', justifyContent: 'center' }}>
             {userData ? (
                 <div className='profile-info'>
-                    <h2>Profile</h2>
+                    <h1>Profile</h1>
+                    <div>
+                        <img src={userData.photo} alt="Profile" width={'40%'} style={{ borderRadius: '50%' }} />
+                    </div>
                     <p><strong>Email:</strong> {userData.email}</p>
-                    <p><strong>First Name:</strong> {userData.firstName}</p>
-                    <p><strong>Last Name:</strong> {userData.lastName}</p>
-                    <button variant="danger" onClick={handleLogout}>
+                    <p><strong>Display Name:</strong> {userData.firstName} {userData.lastName || 'Not provided'}</p>
+                    <button onClick={handleLogout} className="logout-button">
                         Logout
                     </button>
                 </div>

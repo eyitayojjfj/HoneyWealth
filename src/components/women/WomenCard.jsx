@@ -9,7 +9,6 @@ const WomenCard = ({ name, img, price, func }) => {
   const [isInWishlist, setIsInWishlist] = useState(false);
 
   useEffect(() => {
-    // Check if the product is already in the wishlist when the component mounts
     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
     const productInWishlist = wishlist.some(product => product.name === name);
     setIsInWishlist(productInWishlist);
@@ -22,13 +21,11 @@ const WomenCard = ({ name, img, price, func }) => {
     try {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
       
-      // Check if the product is already in the cart
       const productInCart = cart.some(item => item.name === name);
   
       if (productInCart) {
         alert(`${name} is already in the cart!`);
       } else {
-        // Add product to cart
         cart.push(product);
         localStorage.setItem('cart', JSON.stringify(cart));
         alert(`${name} added to cart!`);
@@ -46,10 +43,8 @@ const WomenCard = ({ name, img, price, func }) => {
       let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
       
       if (isInWishlist) {
-        // Remove from wishlist
         wishlist = wishlist.filter(item => item.name !== name);
       } else {
-        // Add to wishlist
         wishlist.push(product);
       }
 

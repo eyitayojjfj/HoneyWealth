@@ -36,9 +36,7 @@ const Checkout = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Here you would handle form submission to your backend or payment processor
         alert('Order placed successfully!');
-        // Clear cart and navigate to confirmation or home page
         localStorage.removeItem('cart');
         setCart([]);
         navigate('/');
@@ -121,7 +119,9 @@ const Checkout = () => {
                         <option value="us">United States</option>
                         <option value="ca">Canada</option>
                         <option value="uk">United Kingdom</option>
-                        {/* Add more options as needed */}
+                        <option value="uk">Nigeria</option>
+                        <option value="uk">Ghana</option>
+                        
                     </select>
                 </div>
 
@@ -173,7 +173,7 @@ const Checkout = () => {
                     </div>
                 </div>
 
-                <button type="submit">Complete Purchase</button>
+                <button className='check-btn' type="submit">Complete Purchase</button>
             </form>
         </div>
     );

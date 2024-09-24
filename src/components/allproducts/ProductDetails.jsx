@@ -19,7 +19,7 @@ const ProductDetails = () => {
     if (product) {
       const { name, image, price } = product;
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.push({ name, image, price });
+      cart.push({ name, img:image, price });
       localStorage.setItem('cart', JSON.stringify(cart));
       alert(`${name} added to cart!`);
     }
@@ -30,7 +30,7 @@ const ProductDetails = () => {
   }
 
   return (
-    <div className="container mt-4">
+    <div id='detail' className="container mt-4">
       <h1>Product Details</h1>
       <Card className="card" >
         <Card.Img
@@ -44,7 +44,7 @@ const ProductDetails = () => {
           <Card.Text className="card-text">
             <strong>Price:</strong> ₦ {product.price}
           </Card.Text>
-          <Button onClick={AddToCart}>
+          <Button className='detail-button' onClick={AddToCart}>
             Add To Cart
           </Button>
         </Card.Body>

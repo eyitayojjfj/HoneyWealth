@@ -123,3 +123,21 @@ export const AddProduct = () => {
 };
 
 export default AddProduct;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

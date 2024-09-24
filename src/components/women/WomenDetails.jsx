@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import female from './womendata'; // Ensure this path is correct
-import './ProductDetails.css'; // Import the CSS file
+import female from './womendata'; 
+import './Product.css'; 
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -19,7 +19,7 @@ const ProductDetails = () => {
     if (product) {
       const { name, image, price } = product;
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.push({ name, image, price });
+      cart.push({ name, img:image, price });
       localStorage.setItem('cart', JSON.stringify(cart));
       alert(`${name} added to cart!`);
     }
@@ -30,7 +30,7 @@ const ProductDetails = () => {
   }
 
   return (
-    <div className="container mt-4">
+    <div id='detail' className="container mt-4">
       <Card className="card" >
         <Card.Img
           variant="top"
@@ -43,7 +43,7 @@ const ProductDetails = () => {
           <Card.Text className="card-text">
             <strong>Price:</strong> ₦ {product.price}
           </Card.Text>
-          <Button onClick={AddToCart}>
+          <Button className='detail-button' onClick={AddToCart}>
             Add To Cart
           </Button>
         </Card.Body>

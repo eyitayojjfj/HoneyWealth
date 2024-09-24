@@ -1,6 +1,50 @@
+.foot{
+    display: flex;
+    background-color: rgba(128, 128, 128, 0.347);
+    padding-top: 30px;
+    padding-bottom: 1px;
+    justify-content: center;
+    padding-right: 20px;
+  }
+  .right{
+     padding-top: 20px;
+  }
+  .fut{
+   border-right: 3px solid black;
+    padding-right: 10px;
+  }
+  .us{
+    border-right: 3px solid black;
+    padding-right: 30px;
+   
+  }
+  .us ul {
+     list-style: none;
+  }
+  .us ul li{
+    color: black;
+  }
+  
+  
+  .pass{
+  
+  }
+  
+  .social{
+    font-size: 30px;
+  }
+  .social a{
+    padding-right: 20px;
+    color: black;
+  }.us ul li a{
+    color: black;
+  }
+  .us ul li a:link{
+    text-decoration: none;
+  }
 .grid {
     display: grid;
-   grid-template-columns: repeat(4, 1fr);
+   grid-template-columns: repeat(3, 1fr);
     gap: 78px;
     padding: 28px;
     justify-content: center;
@@ -20,5 +64,29 @@ footer{
         grid-template-columns: repeat(1, 1fr);
         border: none;
     }
+    .fut{
+      border-right: none;
+       padding-right: 10px;
+     }
+     .us{
+       border-right: none;
+       padding-right: 30px;
+      
+     }
     
+}
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
+    border: none;
+}
+.fut{
+  border-right: none;
+   padding-right: 10px;
+ }
+ .us{
+   border-right: none;
+   padding-right: 30px;
+  
+ }
 }

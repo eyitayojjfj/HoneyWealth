@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { FaRegTrashAlt } from "react-icons/fa";
-import './CartPage.css'; // Assuming you have a CSS file for styles
+import './CartPage.css'; 
 
 const CartPage = () => {
     const [cart, setCart] = useState([]);
@@ -12,7 +12,6 @@ const CartPage = () => {
 
     useEffect(() => {
         try {
-            // Load cart items from localStorage
             const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
             setCart(savedCart);
         } catch (error) {
@@ -35,7 +34,6 @@ const CartPage = () => {
     const handleRemove = (index) => {
         if (window.confirm('Are you sure you want to remove this item from your cart?')) {
             try {
-                // Remove item from cart and update localStorage
                 const updatedCart = cart.filter((_, i) => i !== index);
                 setCart(updatedCart);
                 localStorage.setItem('cart', JSON.stringify(updatedCart));
@@ -56,7 +54,6 @@ const CartPage = () => {
 
     const navigate = useNavigate();
     const handleCheckout = () => {
-      // Navigate to checkout page
       navigate('/checkout');
   };
 

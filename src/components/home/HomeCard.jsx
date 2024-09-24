@@ -2,12 +2,10 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import React, { useState, useEffect } from 'react';
 
-
 const HomeCard = ({name, img, price, func}) => {
   const [isInWishlist, setIsInWishlist] = useState(false);
 
   useEffect(() => {
-    // Check if the product is already in the wishlist when the component mounts
     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
     const productInWishlist = wishlist.some(product => product.name === name);
     setIsInWishlist(productInWishlist);
@@ -20,7 +18,6 @@ const HomeCard = ({name, img, price, func}) => {
     try {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
       
-      // Check if the product is already in the cart
       const productInCart = cart.some(item => item.name === name);
   
       if (productInCart) {
@@ -35,6 +32,8 @@ const HomeCard = ({name, img, price, func}) => {
       console.error("Failed to add product to cart", error);
     }
   };
+ 
+  
 
   const handleToggleWishlist = (event) => {
     event.stopPropagation();
@@ -44,10 +43,8 @@ const HomeCard = ({name, img, price, func}) => {
       let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
       
       if (isInWishlist) {
-        // Remove from wishlist
         wishlist = wishlist.filter(item => item.name !== name);
       } else {
-        // Add to wishlist
         wishlist.push(product);
       }
 

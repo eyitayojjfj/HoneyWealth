@@ -65,11 +65,29 @@
     font-size: 0.9rem;
     color: #4CAF50;
     margin-bottom: 10px;
-  } */
+  } 
   
   .but {
     margin-top: 10px;
+    background-color:  grey;
+    color: aliceblue;
+    padding-right: 40px;
+    padding-left: 40px;
   }
+  .detail-button{
+    margin-top: 10px;
+    background-color:  grey;
+    font-size: 20px;
+    color: aliceblue;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 140px;
+    padding-left: 140px;
+  }
+  #detail{
+    margin-bottom: 150px;
+   }
+
   
   
   @media (max-width: 1024px) {
@@ -129,17 +147,23 @@
   
     .but {
     
-      font-size: 10px; 
-    padding: 10px 80px; 
-    border-radius: 5px; 
-    color: white;
-    text-align: center; 
-    white-space: nowrap; 
-    display: inline-block; 
-    cursor: pointer;
-    text-decoration: none; 
-  
+      margin-top: 10px;
+      font-size: 14px;
+      background-color:  grey;
+      color: aliceblue;
+      padding-right: 30px;
+      padding-left: 30px;
     
+    }
+    .detail-button{
+      margin-top: 10px;
+      background-color:  grey;
+      font-size: 20px;
+      color: aliceblue;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      padding-right: 100px;
+      padding-left: 100px;
     }
   }
   

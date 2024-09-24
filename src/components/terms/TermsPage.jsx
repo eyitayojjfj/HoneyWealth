@@ -1,4 +1,6 @@
 import React from 'react'
+import './TermsPage.css'
+
 
 const TermsPage = () => {
   return (

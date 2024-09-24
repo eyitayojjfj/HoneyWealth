@@ -1,9 +1,55 @@
+.cont{
+    background-color: white;
+    text-decoration-color: white;
+  /* padding-top: 20px; */
+     /* padding-top: -70px; */
+  }
+  .head2{
+    font-weight: 700;
+  }
+  .head2:hover{
+    color: blue;
+  }
+  .login-btn{
+    background-color:  grey;
+    color: aliceblue;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 50px;
+    padding-left: 50px;
+  }
+  
 .menu, .close {
     cursor: pointer;
     font-size: 40px;
     color: #333; 
 }
-
+.fa-solid  {
+    font-size: 18px;
+    padding-right: 10px;
+  }
+  .fa-solid:hover{
+    color: blue;
+  }
+  #user{
+    padding-top: 8px;
+    font-size: 35px;
+    padding-left: 20px;
+  }
+  #user:hover{
+    text-decoration: none;
+    color: blue;
+  }
+  .btn:hover{
+    text-decoration: none;
+  }
+  .drop2{
+    font-size: 13px;
+  }
+  .drop2:hover{
+    text-decoration: none;
+    color: blue;
+  }
 .cart {
     margin-left: 20px;
     margin-top: 20px;

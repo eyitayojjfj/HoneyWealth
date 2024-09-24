@@ -7,13 +7,11 @@ const Wishlist = () => {
   const [wishlist, setWishlist] = useState([]);
 
   useEffect(() => {
-    // Load wishlist from localStorage
     const storedWishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
     setWishlist(storedWishlist);
   }, []);
 
   const handleRemoveFromWishlist = (productName) => {
-    // Remove the product from the wishlist
     const updatedWishlist = wishlist.filter(product => product.name !== productName);
     localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
     setWishlist(updatedWishlist);
@@ -38,7 +36,7 @@ const Wishlist = () => {
               <Card.Text>
                 ₦ {product.price}
               </Card.Text>
-              <Button variant="primary" onClick={() => handleRemoveFromWishlist(product.name)}>Remove from Wishlist</Button>
+              <Button className='wish-button' variant="primary" onClick={() => handleRemoveFromWishlist(product.name)}>Remove from Wishlist</Button>
             </Card.Body>
           </Card>
         ))

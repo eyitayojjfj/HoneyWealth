@@ -22,6 +22,7 @@ import { useState, useEffect } from 'react';
 import { auth } from './FireBase';
 import PrivateRoute from './components/account/PrivateRoute';
 import AddProduct from './components/allproducts/AddProducts';
+import Reset from './components/forgotpassword/Reset';
 
 function App() {
   const [user, setUser] = useState();
@@ -45,6 +46,7 @@ function App() {
           <Route path="/men" element={<MenPage />} />
           <Route path="/men" element={<PrivateRoute/>} />
           <Route path="/add-product" element={<AddProduct/>} />
+          <Route path="/forgotpassword" element={<Reset/>} />
           <Route path="/women" element={<WomenPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/wish" element={<WishList />} />

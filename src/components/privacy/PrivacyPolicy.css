@@ -1,0 +1,14 @@
+.privacy{
+    padding-bottom: 80px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  .privacy h1{
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-bottom: 30px;
+  }
+  .privacy h3{
+    font-size: 18px;
+    text-align: center;
+  }
