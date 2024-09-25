@@ -3,7 +3,7 @@ import { db, storage } from '../../FireBase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { collection, addDoc } from 'firebase/firestore';
 
-export const AddProduct = () => {
+export const AddWomen = () => {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState(null);
@@ -31,7 +31,7 @@ export const AddProduct = () => {
       const uploadTask = await uploadBytes(imageRef, image);
       const url = await getDownloadURL(uploadTask.ref);
 
-      await addDoc(collection(db, 'Products'), {
+      await addDoc(collection(db, 'Women-Products'), {
         productName: title,
         productPrice: Number(price),
         productImage: url,
@@ -114,13 +114,8 @@ export const AddProduct = () => {
           Submit
         </button>
       </form>
-      <div className='admin'>
-        <a className='a1' href="/add">Add Women's Products</a>
-       <a className='a2' href="/add-men">Add Men's Products</a>
-     <a className='a3' href="/add-home">Add HomePage Products</a>
-      </div>
     </div>
   );
 };
 
-export default AddProduct;
+export default AddWomen;

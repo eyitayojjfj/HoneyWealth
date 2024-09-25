@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import { IoEyeSharp } from "react-icons/io5";
+import { FaRegEyeSlash } from "react-icons/fa";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-// import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../FireBase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { setDoc, doc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
-import './signin.css'
-
+import './signin.css';
 
 export const SignUp = () => {
     const [first, setFirst] = useState("");
@@ -16,41 +17,40 @@ export const SignUp = () => {
     const [password, setPassword] = useState("");
     const [again, setAgain] = useState("");
     const [error, setError] = useState("");
+    const [showPassword, setShowPassword] = useState(false); 
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        setError("");
         if (password !== again) {
             setError("Passwords do not match");
             return;
         }
 
         try {
-            await createUserWithEmailAndPassword(auth, email, password);
-            const user = auth.currentUser;
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
             localStorage.setItem('token', user.accessToken);
             localStorage.setItem('user', JSON.stringify(user));
-            console.log(user);
-             if (user){
-                await setDoc(doc (db, 'Users', user.uid),{
+
+            await setDoc(doc(db, 'Users', user.uid), {
                 email: user.email,
                 firstName: first,
                 lastName: last,
-                password: password,
+                password: password, 
                 photo: ''
-                });
-             }
+            });
+
             console.log('Account Created');
-           alert('Registration Successful!', {
+            toast.success('Registration Successful!', {
                 position: "top-center",
             });
-            window.location.href = '/signin'
 
-             navigate('/'); 
-
+            navigate('/'); 
         } catch (error) {
-            console.log(error);
-            toast.success(error.message, {
+            console.error(error);
+            toast.error(error.message, {
                 position: "bottom-center",
             });
             setError(error.message); 
@@ -101,27 +101,34 @@ export const SignUp = () => {
                         <Form.Label>Password</Form.Label>
                         <Form.Control
                             className='form'
-                            type="password"
+                            type={showPassword ? "text" : "password"} 
                             placeholder="Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
+                        <span className='eyes2' onClick={() => setShowPassword(!showPassword)} style={{ cursor: 'pointer' }}>
+                            {showPassword ? <FaRegEyeSlash /> : <IoEyeSharp />}
+                        </span>
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
                         <Form.Label>Confirm Password</Form.Label>
                         <Form.Control
                             className='form'
-                            type="password"
+                            type={showPassword ? "text" : "password"} 
                             placeholder="Enter Password Again"
                             value={again}
                             onChange={(e) => setAgain(e.target.value)}
                         />
+                        <span className='eyes2' onClick={() => setShowPassword(!showPassword)} style={{ cursor: 'pointer' }}>
+                            {showPassword ? <FaRegEyeSlash /> : <IoEyeSharp />}
+                        </span>
                     </Form.Group>
+                    
                     <Button className='sign-button' variant="primary" type="submit">
                         Continue
                     </Button>  
-                    <p>Already Have An Account? <a href="/signin">Sign In Here</a></p>
+                    <p className='already'>Already Have An Account? <a href="/signin">Sign In Here</a></p>
                   
                     {error && <div className='error-msg'>{error}</div>}
                 </form>

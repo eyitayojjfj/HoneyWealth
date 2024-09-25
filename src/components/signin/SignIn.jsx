@@ -1,24 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
-import  '../signup/signin.css'
+import { IoEyeSharp } from "react-icons/io5";
+import { FaRegEyeSlash } from "react-icons/fa";
+import '../signup/signin.css';
 import Form from 'react-bootstrap/Form';
 import { auth } from '../../FireBase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { toast } from 'react-toastify';
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import GoogleSign from '../signup/GoogleSign';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
-    const navigate = useNavigate(); 
-
+    const navigate = useNavigate();
     const [mail, setMail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
+    // Check if user is already signed in
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged(user => {
+            if (user) {
+                // User is signed in, redirect to home
+                navigate('/');
+            }
+        });
+
+        return () => unsubscribe(); // Cleanup subscription on unmount
+    }, [navigate]);
+
     const handlePasswordToggle = () => {
-        setShowPassword(!showPassword);
+        setShowPassword(prev => !prev);
     };
 
     const handleSubmit = async (e) => {
@@ -30,10 +42,10 @@ const SignIn = () => {
             const user = userCredential.user;
             localStorage.setItem('token', user.accessToken);
             localStorage.setItem('user', JSON.stringify(user));
-           alert('Login Successful!', {
+            toast.success('Login Successful!', {
                 position: "top-center",
             });
-            window.location.href = '/'
+            navigate('/'); // Redirect after successful login
         } catch (error) {
             console.error(error);
             toast.error(error.message, {
@@ -44,12 +56,10 @@ const SignIn = () => {
     };
 
     const handleReset = () => {
-        navigate('/forgotpassword'); 
+        navigate('/forgotpassword');
     };
 
     return (
-      <>
-
         <div className='fum'>
             <div className='scold'>
                 <h3>Welcome! Sign In Now!</h3>
@@ -64,6 +74,7 @@ const SignIn = () => {
                             placeholder="Enter email"
                             value={mail}
                             onChange={(e) => setMail(e.target.value)}
+                            required
                         />
                     </Form.Group>
 
@@ -71,26 +82,26 @@ const SignIn = () => {
                         <Form.Label>Password</Form.Label>
                         <Form.Control
                             className='form'
-                         
                             type={showPassword ? "text" : "password"}
                             autoComplete='current-password'
                             placeholder="Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            required
                         />
                         <div
                             onClick={handlePasswordToggle}
-                            className={`position-absolute top-50 end-0 me-1 ${showPassword ? 'eye' : 'eye-slash'}`}
+                            className={`eyes ${showPassword ? 'eye' : 'eye-slash'}`}
                             style={{ cursor: 'pointer', transform: 'translateY(-50%)' }}
                         >
-                            {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+                            {showPassword ? <FaRegEyeSlash /> : <IoEyeSharp />}
                         </div>
                     </Form.Group>
                     <Button className='sign-button' variant="primary" type="submit">
                         Continue
                     </Button>
                     <p onClick={handleReset} className='pass'><a href="/forgotpassword">Forgot Password?</a></p>
-                    <p>Don't have an account yet? <a href="/signup">Create an Account</a></p>
+                    <p className='already'>Don't have an account yet? <a href="/signup">Create an Account</a></p>
 
                     <GoogleSign />
                     
@@ -98,7 +109,6 @@ const SignIn = () => {
                 </form>
             </div>
         </div>
-        </>
     );
 };
 

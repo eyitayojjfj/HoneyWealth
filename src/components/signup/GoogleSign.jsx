@@ -16,7 +16,6 @@ const GoogleSign = () => {
       const user = result.user;
 
       if (user) {
-        // Check if the user document already exists in Firestore
         const userDocRef = doc(db, 'Users', user.uid);
         const userDoc = await getDoc(userDocRef);
 
@@ -30,7 +29,6 @@ const GoogleSign = () => {
           });
         }
 
-        // Store token and user info in local storage
         localStorage.setItem('token', user.accessToken);
         localStorage.setItem('user', JSON.stringify(user));
         

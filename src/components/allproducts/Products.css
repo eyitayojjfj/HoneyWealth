@@ -16,7 +16,7 @@
   }
   .product-card-img{
     height: 290px;
-    width: 280px;
+    width: 240px;
   }
   
   .product-grid {
@@ -34,7 +34,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.3s ease;
-    width: 280px ;
+    width: 240px;
   }
   
   .product-card:hover {
@@ -83,6 +83,30 @@
     padding-bottom: 8px;
     padding-right: 140px;
     padding-left: 140px;
+  }
+  .admin{
+    margin-top: -65px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+  .admin a{
+    color: white;
+    padding-right: 10px;
+    background-color:  grey;
+    font-size: 20px;
+    padding-top: 10px;
+    border-radius: 7px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    color: aliceblue;
+    margin-right: 20px
+  }
+ 
+  .admin  a:link{
+    text-decoration: none;
   }
   
   
@@ -166,6 +190,26 @@
       padding-bottom: 8px;
       padding-right: 100px;
       padding-left: 100px;
+    }
+    .admin{
+      margin-top: -45px;
+      display: flex;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+    }
+    .admin a{
+      color: white;
+      padding-right: 10px;
+      background-color:  grey;
+      font-size: 15px;
+      padding-top: 10px;
+      border-radius: 7px;
+      padding-bottom: 10px;
+      padding-right: 10px;
+      padding-left: 10px;
+      color: aliceblue;
+      margin-right: 20px
     }
   }
 

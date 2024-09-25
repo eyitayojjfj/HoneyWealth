@@ -19,7 +19,7 @@
   }
   .product-card-img{
     height: 200px;
-    width: 280px;
+    width: 240px;
   }
   
   .product-grid {
@@ -37,7 +37,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.3s ease;
-    width: 280px;
+    width: 240px;
   }
   
   .product-card:hover {
@@ -87,6 +87,18 @@
   #detail{
     margin-bottom: 150px;
    }
+   .loading-spinner{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding-top: 150px;
+    padding-bottom: 150px;
+}
+.loading-spinner img{
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+}
 
   
   

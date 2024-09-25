@@ -60,6 +60,7 @@ const ProductCard = ({ name, img, price, func }) => {
   };
 
   return (
+    <>
     <Card className='product-card' onClick={func}>
     <Card.Img 
       className='product-card-img'
@@ -82,6 +83,9 @@ const ProductCard = ({ name, img, price, func }) => {
         </Card.Text>
       </Card.Body>
     </Card>
+
+    
+    </>
   );
 };
 

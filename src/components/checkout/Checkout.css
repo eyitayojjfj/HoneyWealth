@@ -43,5 +43,96 @@ button {
     border-radius: 4px;
     cursor: pointer;
 }
+.shipping-method {
+    margin-bottom: 20px;
+}
+
+.shipping-method h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    border: 2px solid #CBC9FF;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #f8f9fa; 
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.option:not(.selected) {
+    border: 2px solid #d3d3d3; 
+}
+
+.option.selected {
+    background-color: #f8f9fa; 
+}
+.option:not(.selected) label::before {
+    border-color: grey;
+}
+.option.selected label::before {
+    border-color: #8A6BFF; 
+}
 
 
+.option input[type="radio"] {
+    display: none;
+}
+
+.option label {
+    font-size: 16px;
+    color: #8A6BFF;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+.option label::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #8A6BFF;
+    margin-right: 15px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.option.selected label::before {
+    background-color: #8A6BFF;
+}
+.option:not(.selected) label{
+ color: black;
+}
+.option.selected label {
+    color: #8A6BFF;
+}
+
+.pickup-address {
+    margin-top: 15px;
+
+}
+.pickup{
+    transition: transform 0.5s ease;
+
+}
+.pickup-address input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 2px solid #CBC9FF;
+    border-radius: 8px;
+}
+.pickup-address {
+    font-size: 16px;
+    color: #8A6BFF;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+}

@@ -4,6 +4,8 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FaUser } from 'react-icons/fa';
+import { auth, db } from '../../FireBase'; 
+import { doc, getDoc } from 'firebase/firestore';
 import { RiMenu2Line } from "react-icons/ri";
 import { IoCloseOutline } from 'react-icons/io5';
 import { getCartItemCount } from './cartUtils'; 
@@ -12,6 +14,25 @@ import './Navigation.css';
 const Navigation = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [cartCount, setCartCount] = useState(0);
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
+      if (currentUser) {
+        const userDocRef = doc(db, 'Users', currentUser.uid);
+        const userDoc = await getDoc(userDocRef);
+        if (userDoc.exists()) {
+          setUserData(userDoc.data());
+        } else {
+          setUserData(null); // Reset userData if the doc doesn't exist
+        }
+      } else {
+        setUserData(null); // Reset userData if no user is logged in
+      }
+    });
+
+    return () => unsubscribe(); // Clean up subscription
+  }, []);
 
   const handleToggle = () => {
     setIsCollapsed(!isCollapsed);
@@ -25,8 +46,6 @@ const Navigation = () => {
 
     return () => window.removeEventListener('storage', updateCartCount);
   }, []);
-
-  
 
   return (
     <Navbar collapseOnSelect expand="lg" className="cont" expanded={!isCollapsed}>
@@ -60,7 +79,17 @@ const Navigation = () => {
             <Nav.Link href="/women" className='head2'>WOMEN</Nav.Link>
           </Nav>
           <Nav>
-            <FaUser id='user' />
+            {userData ? (
+              <div>
+                <img 
+                  src={userData.photo || '/default-profile.png'}  
+                  className="profile-pic" 
+                  alt="Profile"
+                />
+              </div>
+            ) : (
+              <div><FaUser/></div>
+            )}
             <NavDropdown title="ACCOUNT" id="collapsible-nav-dropdown" className='head3'>
               <NavDropdown.Item className='drop' href="/signin">
                 <button className='login-btn'>LOG IN</button>

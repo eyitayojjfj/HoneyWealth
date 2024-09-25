@@ -18,7 +18,7 @@
   }
   .product-card-img{
     height: 200px;
-    width: 280px;
+    width: 240px;
   }
   
   .product-grid {
@@ -32,11 +32,11 @@
   
   .product-card {
     border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.3s ease;
-    width: 280px;
+    width: 240px;
   }
   
   .product-card:hover {
@@ -70,6 +70,8 @@
     margin-top: 10px;
     background-color:  grey;
     color: aliceblue;
+    padding-top: 7px;
+    padding-bottom: 7px;
     padding-right: 40px;
     padding-left: 40px;
   }

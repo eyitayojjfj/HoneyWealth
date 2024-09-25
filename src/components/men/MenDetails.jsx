@@ -1,48 +1,83 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import perfumes from './mendata'; // Ensure this path is correct
-import './ProductDetails.css'; // Import the CSS file
-import './Products.css'
+import { db } from '../../FireBase'; // Update with your Firestore config
+import { doc, getDoc } from 'firebase/firestore';
+import '../allproducts/Products.css';
 
-const ProductDetails = () => {
+const   MenDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const foundProduct = perfumes.find(p => p.id === id);
-    setProduct(foundProduct || null);
+    const fetchProduct = async () => {
+      try {
+        const productRef = doc(db, 'Men-Products', id); // Ensure the collection name is correct
+        const productSnap = await getDoc(productRef);
+        
+        if (productSnap.exists()) {
+          setProduct({ id: productSnap.id, ...productSnap.data() });
+        } else {
+          setError("Product not found.");
+        }
+      } catch (err) {
+        setError("Error fetching product data.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
   }, [id]);
 
   const AddToCart = (event) => {
     event.stopPropagation();
     if (product) {
-      const { name, image, price } = product;
+      const { productName, productImage, productPrice } = product;
+      
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.push({ name, img:image, price });
-      localStorage.setItem('cart', JSON.stringify(cart));
-      alert(`${name} added to cart!`);
+      
+      const isProductInCart = cart.some(item => item.name === productName);
+  
+      if (!isProductInCart) {
+        cart.push({ name: productName, img: productImage, price: productPrice });
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert(`${productName} added to cart!`);
+      } else {
+        alert(`${productName} is already in the cart!`);
+      }
     }
   };
 
-  if (!product) {
-    return <div className="alert">Product not found</div>;
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return (
+      <div className="alert alert-danger">
+        {error} <Link to="/">Go back to products</Link>
+      </div>
+    );
   }
 
   return (
-    <div className="container mt-4">
-      <Card className="card" >
+    <div id='detail' className="container mt-4">
+      <h1>Product Details</h1>
+      <Card className="card">
         <Card.Img
           variant="top"
-          src={product.image}
-          alt={product.name}
+          src={product.productImage}
+          alt={product.productName}
           className="card-img"
         />
         <Card.Body className="card-body">
-          <Card.Title className="card-title">{product.name}</Card.Title>
+          <Card.Title className="card-title">{product.productName}</Card.Title>
           <Card.Text className="card-text">
-            <strong>Price:</strong> ₦ {product.price}
+            <strong>Price:</strong> ₦ {product.productPrice}
           </Card.Text>
           <Button className='detail-button' onClick={AddToCart}>
             Add To Cart
@@ -53,4 +88,4 @@ const ProductDetails = () => {
   );
 };
 
-export default ProductDetails;
+export default MenDetails;

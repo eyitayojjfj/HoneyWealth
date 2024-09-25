@@ -56,7 +56,7 @@ section h1{
   }
   .product-card-img{
     height: 200px;
-    width: 280px;
+    width: 240px;
   }
   
   .product-grid {
@@ -74,7 +74,7 @@ section h1{
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.3s ease;
-    width: 280px;
+    width: 240px;
   }
   
   .product-card:hover {
@@ -123,6 +123,50 @@ section h1{
   }#detail{
     margin-bottom: 150px;
    }
+   .honey{
+    padding-right: 30px;
+  }
+  .honey h5{
+    text-align: center;
+    font-size: 27px;
+    color: grey;
+  }
+  .honey h1{
+    text-align: center;
+    color: grey;
+    font-size: 60px;
+  }
+  .honey p{
+    text-align: center;
+    font-size: 17px;
+    color: grey;
+  }
+  aside{
+    padding: 15px;
+  }
+  aside h3{
+   text-align: center;
+    padding-top: 40px;
+  }
+  aside p{
+    text-align: center;
+    font-size: 17px;
+  }
+  .container2{
+    display: grid;
+   grid-template-columns: repeat(3, 1fr) ;
+    gap: 30px;
+    padding: 10px;
+    justify-content: center;
+   align-items: center;
+   max-width: 1000px;
+   margin: 0px auto;
+   text-align: center;
+   padding-top: 60px;
+}
+  
+  
+  
 
 
 @media (max-width: 768px) {

@@ -1,10 +1,10 @@
-// src/Checkout.js
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Checkout.css'; // Assuming you will add styles in Checkout.css
+import './Checkout.css'; 
 
 const Checkout = () => {
     const [cart, setCart] = useState([]);
+    const [shippingMethod, setShippingMethod] = useState('');
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -48,6 +48,10 @@ const Checkout = () => {
             const quantity = item.quantity || 1;
             return total + (price * quantity);
         }, 0).toFixed(2);
+    };
+
+    const handleShippingChange = (event) => {
+        setShippingMethod(event.target.value);
     };
 
     const navigate = useNavigate();
@@ -119,14 +123,69 @@ const Checkout = () => {
                         <option value="us">United States</option>
                         <option value="ca">Canada</option>
                         <option value="uk">United Kingdom</option>
-                        <option value="uk">Nigeria</option>
-                        <option value="uk">Ghana</option>
-                        
+                        <option value="ng">Nigeria</option>
+                        <option value="gh">Ghana</option>
                     </select>
                 </div>
+                 
+                <div className="section">
+                    <div className="shipping-method">
+                        <h2>Shipping Method</h2>
+
+                        {/* Deliver to me option */}
+                        <div className={`option ${shippingMethod === 'deliver' ? 'selected' : ''}`} onClick={() => setShippingMethod('deliver')}>
+                            <input
+                                type="radio"
+                                id="deliver"
+                                name="shipping"
+                                value="deliver"
+                                checked={shippingMethod === 'deliver'}
+                                onChange={handleShippingChange}
+                                style={{ display: 'none' }} // Hide the radio button
+                            />
+                            <label htmlFor="deliver">Deliver to me</label>
+                        </div>
+
+                        {/* Self Pickup option */}
+                        <div className={`option ${shippingMethod === 'pickup' ? 'selected' : ''}`} onClick={() => setShippingMethod('pickup')}>
+                            <input
+                                type="radio"
+                                id="pickup"
+                                name="shipping"
+                                value="pickup"
+                                checked={shippingMethod === 'pickup'}
+                                onChange={handleShippingChange}
+                                style={{ display: 'none' }} // Hide the radio button
+                            />
+                            <label htmlFor="pickup">Self Pickup</label>
+                        </div>
+        
+                        {/* Address input field, only visible when 'Self Pickup' is selected */}
+                        {shippingMethod === 'pickup' && (
+                            <div className='pickup'>
+                            <div>
+                            <h4>Pickup-Address</h4>
+                            </div>
+                            <div className="pickup-address">
+                                <input
+                                type="radio"
+                                id="pickup"
+                                name="shipping"
+                                value="pickup"
+                                style={{ display: 'none' }} // Hide the radio button
+                            />
+                            <label htmlFor="pickup">CITS University Of Lagos</label>              
+                      </div>
+                      </div>
+                        )}
+                   
+                    </div>
+                </div>
+              
 
                 <div className="section">
                     <h2>Payment Information</h2>
+
                     <label htmlFor="card-number">Card Number</label>
                     <input
                         type="text"

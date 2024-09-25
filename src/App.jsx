@@ -23,6 +23,12 @@ import { auth } from './FireBase';
 import PrivateRoute from './components/account/PrivateRoute';
 import AddProduct from './components/allproducts/AddProducts';
 import Reset from './components/forgotpassword/Reset';
+import AddWomen from './components/women/AddWomen';
+import WomenDetails from './components/women/WomenDetails';
+import AddMen from './components/men/AddMen';
+import MenDetails from './components/men/MenDetails';
+import AddHomeProducts from './components/home/AddHomeProducts';
+import HomeProductDetails from './components/home/HomeProductDetail';
 
 function App() {
   const [user, setUser] = useState();
@@ -43,9 +49,16 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/allproducts" element={<Products />} />
           <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/women-product/:id" element={<WomenDetails/>} />
+          <Route path="/men-product/:id" element={<MenDetails/>} />
+          <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/homeproduct/:id" element={<HomeProductDetails />} />
           <Route path="/men" element={<MenPage />} />
           <Route path="/men" element={<PrivateRoute/>} />
           <Route path="/add-product" element={<AddProduct/>} />
+          <Route path="/add-home" element={<AddHomeProducts/>} />
+          <Route path="/add" element={<AddWomen/>} />
+          <Route path="/add-men" element={<AddMen/>} />
           <Route path="/forgotpassword" element={<Reset/>} />
           <Route path="/women" element={<WomenPage />} />
           <Route path="/cart" element={<CartPage />} />

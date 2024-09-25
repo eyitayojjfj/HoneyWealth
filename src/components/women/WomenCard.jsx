@@ -72,7 +72,7 @@ const WomenCard = ({ name, img, price, func }) => {
             style={{ color: isInWishlist ? 'red' : 'gray' }} 
             onClick={handleToggleWishlist}
           ></i></span>
-          <Button className='but' variant="primary" onClick={handleAddToCart}>DD TO CART</Button>
+          <Button className='but' variant="primary" onClick={handleAddToCart}>ADD TO CART</Button>
         
         </Card.Text>
         

@@ -143,6 +143,26 @@
     text-align: center;
     margin-top: 10px;
   }
+  .eyes{
+    position: absolute;
+    margin-top: -31px;
+    margin-left: 335px;
+    color: grey;
+    font-size: 20px;
+  }
+  .eyes2{
+    color: grey;
+    position: absolute;
+    margin-top: -45px;
+    margin-left: 335px;
+    font-size: 20px;
+  }
+  .already{
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+    color: #808080;
+  }
   @media (max-width: 768px) {
     .sign-button{
       background-color: gray;
@@ -151,6 +171,11 @@
       font-size: 17px;
       padding-right: 110px;
       padding-left: 110px;
+    }
+    .eyes{
+      position: absolute;
+      margin-top: -30px;
+      margin-left: 250px;
     }
   }
   
