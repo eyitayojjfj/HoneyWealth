@@ -4,12 +4,12 @@ import './TermsPage.css'
 
 const TermsPage = () => {
   return (
-    <div className='terms'><div><h1>Terms And Conditions</h1></div><h5>Welcome to Honeywealth Fragrances! These Terms and Conditions ("Terms") govern your use of our website and services. By accessing <br /> or using our website, you agree to be bound by these Terms. If you do not agree with any part of these Terms, please do not use our website. <br /><br />
+    <div className='terms'><div><h1>Terms And Conditions</h1></div><h5>Welcome to Honey_Fragrance Store! These Terms and Conditions ("Terms") govern your use of our website and services. By accessing <br /> or using our website, you agree to be bound by these Terms. If you do not agree with any part of these Terms, please do not use our website. <br /><br />
 
     1. General Terms
     
     Eligibility:
-    By using our website, you represent that you are at least 18 years old or have the consent of a parent or guardian. You <br /> agree to provide accurate and complete information when creating an account or making a purchase.
+    By using our website,  You <br /> agree to provide accurate and complete information when creating an account or making a purchase.
     
     Changes to Terms:<br />
     We reserve the right to modify these Terms  at any time. Changes will be effective immediately upon posting on our website. Your continued use of the website following the posting of changes constitutes <br /> your acceptance of the updated Terms. <br /> <br />
@@ -68,11 +68,11 @@ const TermsPage = () => {
     Our website and services are provided "as is" without any warranties of any kind. We do not guarantee that our website will be error-free, uninterrupted, or free from viruses or other harmful components.
     
     Limitation of Liability:
-    To the fullest extent permitted by law, Honeywealth Fragrances shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of our website or services. <br /> <br />
+    To the fullest extent permitted by law, Honey_Fragrance Store shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of our website or services. <br /> <br />
     
     9. Indemnification
     
-    You agree to indemnify and hold harmless Honeywealth Fragrances, its affiliates, and their respective officers, directors, employees, and agents from any claims, liabilities, damages, losses, and expenses (including legal fees) arising out of or related to your use of our website or violation of these Terms. <br /> <br />
+    You agree to indemnify and hold harmless Honey_Fragrance Store, its affiliates, and their respective officers, directors, employees, and agents from any claims, liabilities, damages, losses, and expenses (including legal fees) arising out of or related to your use of our website or violation of these Terms. <br /> <br />
     
     10. Governing Law and Dispute Resolution
     
@@ -86,11 +86,11 @@ const TermsPage = () => {
     
     If you have any questions about these Terms, please contact us at:
     
-    Honeywealth Fragrances
+    Honey_Fragrance Store
     Email: [Insert Contact Email]
     Address: [Insert Physical Address]
     
-    Thank you for choosing Honeywealth Fragrances. We appreciate your business and look forward to serving you.
+    Thank you for choosing Honey_Fragrance Store. We appreciate your business and look forward to serving you.
     
     
     

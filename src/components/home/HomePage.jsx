@@ -60,12 +60,12 @@ const HomePage = () => {
         <div className='honey'>
             <h1><MdLockPerson /></h1>
             <h5>Secured Payments</h5>
-            <p>Your security is our priority. At HoneyWealth Fragrances, we use the latest encryption technology to ensure that all transactions are safe and secure. Shop with confidence knowing that your personal and payment information is protected. Our secure payment options make your shopping experience smooth and worry-free.</p>
+            <p>Your security is our priority. At Honey_Fragrance Store, we use the latest encryption technology to ensure that all transactions are safe and secure. Shop with confidence knowing that your personal and payment information is protected. Our secure payment options make your shopping experience smooth and worry-free.</p>
           </div>
           <div className='honey'>
             <h1><GiDelicatePerfume /></h1>
             <h5>Best Quality</h5>
-            <p>At HoneyWealth Fragrances, we pride ourselves on delivering the finest quality fragrances. Each perfume is crafted using premium ingredients sourced from around the globe, ensuring that every scent embodies purity and sophistication. </p>
+            <p>At Honey_Fragrance Store, we pride ourselves on delivering the finest quality fragrances. Each perfume is crafted using premium ingredients sourced from around the globe, ensuring that every scent embodies purity and sophistication. </p>
           </div>
           <div className='honey'>
             <h1><IoMdPricetag /></h1>
@@ -74,7 +74,7 @@ const HomePage = () => {
           </div>
         </div>
         <aside>
-          <h3>Experience the HoneyWealth Fragrances Difference</h3>
+          <h3>Experience the Honey_Fragrance Store Difference</h3>
           <p>Explore our collection and find your perfect scent today. For any inquiries or assistance, our friendly customer service team <br /> is here to help. Contact us at [+234 704 819 8913] or [ honeywealth.fragrances@gmail.com], or visit us at [CITS University Of Lagos]</p>
         </aside>
       </div>

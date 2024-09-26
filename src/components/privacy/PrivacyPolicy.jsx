@@ -3,7 +3,7 @@ import './PrivacyPolicy.css'
 
 const PrivacyPolicy = () => {
   return (
-    <div className='privacy'><div><h1>Privacy Policy</h1></div><h3>At Honeywealth Fragrances, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy outlines how we collect, use, and safeguard your data when you visit our website and interact with our services. <br /> <br />
+    <div className='privacy'><div><h1>Privacy Policy</h1></div><h3>At Honey_Fragrance Store, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy outlines how we collect, use, and safeguard your data when you visit our website and interact with our services. <br /> <br />
 
     1. Information We Collect
     

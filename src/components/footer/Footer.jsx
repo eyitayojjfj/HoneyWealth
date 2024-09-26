@@ -19,7 +19,7 @@ const Footer = () => {
       <div className='grid'>
    <div className='fut'>
     <div><h5>ABOUT US</h5></div>
-    <p>At Honeywealth Fragrances, we specialize in selling exquisite perfumes that captivate  the senses. Whether you're looking  for the perfect scent to express  your individuality or a gift that  leaves a lasting impression, our  curated collection has something for everyone.</p>
+    <p>Honey_Fragrance Store, we specialize in selling exquisite perfumes that captivate  the senses. Whether you're looking  for the perfect scent to express  your individuality or a gift that  leaves a lasting impression, our  curated collection has something for everyone.</p>
     </div>
 
     <div className='fut'>
@@ -46,7 +46,7 @@ const Footer = () => {
     </div>
     </div>
 
-    <div className='right'><p>Copyright © 2024 HoneyWealth Fragrances.</p></div>
+    <div className='right'><p>Copyright © 2024 Honey_Fragrance Store.</p></div>
   </footer>
 
   </div>
