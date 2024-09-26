@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { db } from '../../FireBase'; // Update with your Firestore config
+import { db } from '../../FireBase';
 import { doc, getDoc } from 'firebase/firestore';
 import '../allproducts/Products.css';
 
@@ -15,7 +15,7 @@ const   MenDetails = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const productRef = doc(db, 'Men-Products', id); // Ensure the collection name is correct
+        const productRef = doc(db, 'Men-Products', id); 
         const productSnap = await getDoc(productRef);
         
         if (productSnap.exists()) {

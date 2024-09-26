@@ -34,16 +34,14 @@ const WomenPage = () => {
     navigate(`/women-product/${id}`);
   };
 
-  // Loading Spinner
   if (loading) {
     return (
       <div className="loading-spinner">
-        <img src="/spin.gif" alt="Loading..." />
+        <img src="/public/spin.gif" alt="Loading..." />
       </div>
     );
   }
 
-  // Error Message
   if (error) {
     return <h2>{error}</h2>;
   }

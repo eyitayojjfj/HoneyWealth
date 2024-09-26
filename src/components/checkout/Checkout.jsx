@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { db } from '../../FireBase'; 
+import { doc, getDoc } from 'firebase/firestore';
+import { useAuth } from '../account/AuthContext'; 
 import './Checkout.css'; 
 
 const Checkout = () => {
@@ -16,15 +19,30 @@ const Checkout = () => {
         expDate: '',
         cvv: ''
     });
+    
+    const navigate = useNavigate();
+    const { currentUser } = useAuth(); 
 
     useEffect(() => {
-        try {
-            const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
-            setCart(savedCart);
-        } catch (error) {
-            console.error('Failed to load cart from localStorage:', error);
-        }
-    }, []);
+        const fetchCart = async () => {
+            if (currentUser) {
+                try {
+                    const userDocRef = doc(db, 'Users', currentUser.uid);
+                    const userDoc = await getDoc(userDocRef);
+                    if (userDoc.exists()) {
+                        const userData = userDoc.data();
+                        setCart(userData.cart || []);
+                    } else {
+                        console.log('No cart data found');
+                    }
+                } catch (error) {
+                    console.error('Failed to load cart from Firestore:', error);
+                }
+            }
+        };
+
+        fetchCart();
+    }, [currentUser]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -37,7 +55,6 @@ const Checkout = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         alert('Order placed successfully!');
-        localStorage.removeItem('cart');
         setCart([]);
         navigate('/');
     };
@@ -50,11 +67,13 @@ const Checkout = () => {
         }, 0).toFixed(2);
     };
 
+    const calculateTotalQuantity = () => {
+        return cart.reduce((total, item) => total + (item.quantity || 1), 0);
+    };
+
     const handleShippingChange = (event) => {
         setShippingMethod(event.target.value);
     };
-
-    const navigate = useNavigate();
 
     return (
         <div className="checkout-container">
@@ -131,8 +150,6 @@ const Checkout = () => {
                 <div className="section">
                     <div className="shipping-method">
                         <h2>Shipping Method</h2>
-
-                        {/* Deliver to me option */}
                         <div className={`option ${shippingMethod === 'deliver' ? 'selected' : ''}`} onClick={() => setShippingMethod('deliver')}>
                             <input
                                 type="radio"
@@ -141,12 +158,11 @@ const Checkout = () => {
                                 value="deliver"
                                 checked={shippingMethod === 'deliver'}
                                 onChange={handleShippingChange}
-                                style={{ display: 'none' }} // Hide the radio button
+                                style={{ display: 'none' }}
                             />
                             <label htmlFor="deliver">Deliver to me</label>
                         </div>
 
-                        {/* Self Pickup option */}
                         <div className={`option ${shippingMethod === 'pickup' ? 'selected' : ''}`} onClick={() => setShippingMethod('pickup')}>
                             <input
                                 type="radio"
@@ -155,37 +171,23 @@ const Checkout = () => {
                                 value="pickup"
                                 checked={shippingMethod === 'pickup'}
                                 onChange={handleShippingChange}
-                                style={{ display: 'none' }} // Hide the radio button
+                                style={{ display: 'none' }}
                             />
                             <label htmlFor="pickup">Self Pickup</label>
                         </div>
-        
-                        {/* Address input field, only visible when 'Self Pickup' is selected */}
+
                         {shippingMethod === 'pickup' && (
                             <div className='pickup'>
-                            <div>
-                            <h4>Pickup-Address</h4>
+                                <h4>Pickup Address</h4>
+                                <label htmlFor="pickup-location">CITS University Of Lagos</label>
                             </div>
-                            <div className="pickup-address">
-                                <input
-                                type="radio"
-                                id="pickup"
-                                name="shipping"
-                                value="pickup"
-                                style={{ display: 'none' }} // Hide the radio button
-                            />
-                            <label htmlFor="pickup">CITS University Of Lagos</label>              
-                      </div>
-                      </div>
                         )}
-                   
                     </div>
                 </div>
               
 
                 <div className="section">
                     <h2>Payment Information</h2>
-
                     <label htmlFor="card-number">Card Number</label>
                     <input
                         type="text"
@@ -228,6 +230,7 @@ const Checkout = () => {
                                 </li>
                             ))}
                         </ul>
+                        <p><strong>Total Quantity: {calculateTotalQuantity()}</strong></p>
                         <p><strong>Total Price: ₦ {calculateTotalPrice()}</strong></p>
                     </div>
                 </div>

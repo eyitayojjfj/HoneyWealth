@@ -39,7 +39,6 @@ const Profile = () => {
             }
         });
 
-        // Cleanup subscription on unmount
         return () => unsubscribe();
     }, [navigate]);
 

@@ -20,7 +20,7 @@ import Checkout from './components/checkout/Checkout';
 import Profile from './components/account/Profile';
 import { useState, useEffect } from 'react';
 import { auth } from './FireBase';
-import PrivateRoute from './components/account/PrivateRoute';
+// import PrivateRoute from './components/account/PrivateRoute';
 import AddProduct from './components/allproducts/AddProducts';
 import Reset from './components/forgotpassword/Reset';
 import AddWomen from './components/women/AddWomen';
@@ -54,7 +54,7 @@ function App() {
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/homeproduct/:id" element={<HomeProductDetails />} />
           <Route path="/men" element={<MenPage />} />
-          <Route path="/men" element={<PrivateRoute/>} />
+          {/* <Route path="/men" element={<PrivateRoute/>} /> */}
           <Route path="/add-product" element={<AddProduct/>} />
           <Route path="/add-home" element={<AddHomeProducts/>} />
           <Route path="/add" element={<AddWomen/>} />

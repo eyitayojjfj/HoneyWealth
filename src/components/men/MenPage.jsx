@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import MenCard from './MenCard';
 import { useNavigate } from "react-router-dom";
 import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../../FireBase'; // Adjust the path based on your structure
+import { db } from '../../FireBase'; 
 import './Men.css';
 
 const MenPage = () => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true); // New loading state
+  const [loading, setLoading] = useState(true); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const MenPage = () => {
       } catch (error) {
         console.error("Error fetching products: ", error);
       } finally {
-        setLoading(false); // Set loading to false after fetching
+        setLoading(false); 
       }
     };
 
@@ -43,14 +43,14 @@ const MenPage = () => {
 
       {loading ? (
         <div className="loading-spinner">
-          <img src="/spin.gif" alt="Loading..." />
+          <img src="/public/spin.gif" alt="Loading..." />
         </div>
       ) : (
         <div className='product-grid'>
           {products.length > 0 ? (
             products.map((product) => (
               <MenCard
-                key={product.id} // Unique key prop
+                key={product.id} 
                 img={product.productImage}
                 name={product.productName}
                 price={product.productPrice}

@@ -7,7 +7,7 @@ import './Products.css';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true); // New loading state
+  const [loading, setLoading] = useState(true); 
   const navigate = useNavigate();
 
   const fetchProducts = async () => {
@@ -19,7 +19,7 @@ const Products = () => {
     } catch (error) {
       console.error("Error fetching products:", error);
     } finally {
-      setLoading(false); // Set loading to false after fetching
+      setLoading(false);
     }
   };
 

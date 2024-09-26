@@ -5,7 +5,7 @@ import { GiDelicatePerfume } from "react-icons/gi";
 import { IoMdPricetag } from "react-icons/io";
 import { MdLockPerson } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { db } from '../../FireBase'; // Adjust the import path as needed
+import { db } from '../../FireBase';
 import { collection, getDocs } from 'firebase/firestore';
 
 const HomePage = () => {

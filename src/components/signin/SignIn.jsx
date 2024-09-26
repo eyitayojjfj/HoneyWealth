@@ -17,16 +17,14 @@ const SignIn = () => {
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
-    // Check if user is already signed in
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             if (user) {
-                // User is signed in, redirect to home
                 navigate('/');
             }
         });
 
-        return () => unsubscribe(); // Cleanup subscription on unmount
+        return () => unsubscribe(); 
     }, [navigate]);
 
     const handlePasswordToggle = () => {
@@ -45,7 +43,7 @@ const SignIn = () => {
             toast.success('Login Successful!', {
                 position: "top-center",
             });
-            navigate('/'); // Redirect after successful login
+            navigate('/'); 
         } catch (error) {
             console.error(error);
             toast.error(error.message, {

@@ -2,7 +2,7 @@ import React from 'react';
 import { IoLocationSharp } from 'react-icons/io5';
 import { FaPhone } from 'react-icons/fa6';
 import { BiLogoGmail } from 'react-icons/bi';
-import './ContactPage.css'; // Import the CSS file
+import './ContactPage.css'; 
 
 const ContactPage = () => {
   return (

@@ -63,7 +63,7 @@ export const AddMen = () => {
 
   return (
     <div style={{ margin: '20px' }}>
-      <h1>Add Product</h1>
+      <h1>Add Men's Products</h1>
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: '15px' }}>
           <label htmlFor="title">Title</label>

@@ -1,81 +1,97 @@
-
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import React, { useState, useEffect } from 'react';
-
+import { db } from '../../FireBase'; 
+import { doc, updateDoc, arrayUnion, arrayRemove, getDoc } from 'firebase/firestore';
+import { useAuth } from '../account/AuthContext'; 
 
 const WomenCard = ({ name, img, price, func }) => {
-
   const [isInWishlist, setIsInWishlist] = useState(false);
+  const { currentUser } = useAuth(); 
 
   useEffect(() => {
-    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-    const productInWishlist = wishlist.some(product => product.name === name);
-    setIsInWishlist(productInWishlist);
-  }, [name]);
+    const checkWishlist = async () => {
+      if (currentUser) {
+        const userDocRef = doc(db, 'Users', currentUser.uid);
+        const userDoc = await getDoc(userDocRef);
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          setIsInWishlist(userData.wishlist?.some(product => product.name === name) || false);
+        }
+      }
+    };
 
-  const handleAddToCart = (event) => {
+    checkWishlist();
+  }, [name, currentUser]);
+
+  const handleAddToCart = async (event) => {
     event.stopPropagation();
     const product = { name, img, price };
 
-    try {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      
-      const productInCart = cart.some(item => item.name === name);
-  
-      if (productInCart) {
-        alert(`${name} is already in the cart!`);
-      } else {
-        cart.push(product);
-        localStorage.setItem('cart', JSON.stringify(cart));
+    if (currentUser) {
+      const userDocRef = doc(db, 'Users', currentUser.uid);
+      try {
+        await updateDoc(userDocRef, {
+          cart: arrayUnion(product),
+        });
         alert(`${name} added to cart!`);
+      } catch (error) {
+        console.error("Failed to add product to cart", error);
       }
-    } catch (error) {
-      console.error("Failed to add product to cart", error);
+    } else {
+      alert("Please log in to add items to your cart.");
     }
   };
 
-  const handleToggleWishlist = (event) => {
+  const handleToggleWishlist = async (event) => {
     event.stopPropagation();
     const product = { name, img, price };
 
-    try {
-      let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-      
-      if (isInWishlist) {
-        wishlist = wishlist.filter(item => item.name !== name);
-      } else {
-        wishlist.push(product);
+    if (currentUser) {
+      const userDocRef = doc(db, 'Users', currentUser.uid);
+      try {
+        if (isInWishlist) {
+          await updateDoc(userDocRef, {
+            wishlist: arrayRemove(product),
+          });
+          setIsInWishlist(false);
+        } else {
+          await updateDoc(userDocRef, {
+            wishlist: arrayUnion(product),
+          });
+          setIsInWishlist(true);
+        }
+      } catch (error) {
+        console.error("Failed to update wishlist", error);
       }
-
-      localStorage.setItem('wishlist', JSON.stringify(wishlist));
-      setIsInWishlist(!isInWishlist);
-    } catch (error) {
-      console.error("Failed to update wishlist", error);
+    } else {
+      alert("Please log in to manage your wishlist.");
     }
-  };
-
-  const style = {
-    height: "220px",
   };
 
   return (
     <Card className='product-card' onClick={func}>
-      <Card.Img className='product-card-img' variant="top" src={img || "/images/Ajiwad 20k female.jpg"} alt={`Image of ${name}`} />
+      <Card.Img 
+        className='product-card-img' 
+        variant="top" 
+        src={img || "/images/Ajiwad 20k female.jpg"} 
+        alt={`Image of ${name}`} 
+        style={{ height: "220px" }} 
+      />
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <p className='stock'>Available</p>
         <Card.Text>
           ₦ {price}
-          <span><i 
-            className={`fa-heart${isInWishlist ? ' fa-solid' : ' fa-regular'}`} 
-            style={{ color: isInWishlist ? 'red' : 'gray' }} 
-            onClick={handleToggleWishlist}
-          ></i></span>
+          <span>
+            <i 
+              className={`fa-heart${isInWishlist ? ' fa-solid' : ' fa-regular'}`} 
+              style={{ color: isInWishlist ? 'red' : 'gray' }} 
+              onClick={handleToggleWishlist}
+            ></i>
+          </span>
           <Button className='but' variant="primary" onClick={handleAddToCart}>ADD TO CART</Button>
-        
         </Card.Text>
-        
       </Card.Body>
     </Card>
   );

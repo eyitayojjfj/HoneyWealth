@@ -5,16 +5,16 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FaUser } from 'react-icons/fa';
 import { auth, db } from '../../FireBase'; 
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, onSnapshot } from 'firebase/firestore';
 import { RiMenu2Line } from "react-icons/ri";
 import { IoCloseOutline } from 'react-icons/io5';
-import { getCartItemCount } from './cartUtils'; 
 import './Navigation.css'; 
 
 const Navigation = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [cartCount, setCartCount] = useState(0);
   const [userData, setUserData] = useState(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false); 
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
@@ -23,29 +23,37 @@ const Navigation = () => {
         const userDoc = await getDoc(userDocRef);
         if (userDoc.exists()) {
           setUserData(userDoc.data());
+          
+          // Set up a Firestore listener for cart updates
+          const unsubscribeCart = onSnapshot(userDocRef, (doc) => {
+            if (doc.exists()) {
+              const cart = doc.data().cart || [];
+              setCartCount(cart.length);
+            } else {
+              setCartCount(0);
+            }
+          });
+
+          return () => unsubscribeCart(); // Cleanup listener
         } else {
-          setUserData(null); // Reset userData if the doc doesn't exist
+          setUserData(null); 
         }
       } else {
-        setUserData(null); // Reset userData if no user is logged in
+        setUserData(null);
+        setCartCount(0); // Reset cart count if user is logged out
       }
     });
 
-    return () => unsubscribe(); // Clean up subscription
+    return () => unsubscribe(); 
   }, []);
 
   const handleToggle = () => {
     setIsCollapsed(!isCollapsed);
   };
 
-  useEffect(() => {
-    setCartCount(getCartItemCount());
-
-    const updateCartCount = () => setCartCount(getCartItemCount());
-    window.addEventListener('storage', updateCartCount);
-
-    return () => window.removeEventListener('storage', updateCartCount);
-  }, []);
+  const handleDropdownToggle = (isOpen) => {
+    setDropdownOpen(isOpen);
+  };
 
   return (
     <Navbar collapseOnSelect expand="lg" className="cont" expanded={!isCollapsed}>
@@ -81,16 +89,25 @@ const Navigation = () => {
           <Nav>
             {userData ? (
               <div>
-                <img 
-                  src={userData.photo || '/default-profile.png'}  
-                  className="profile-pic" 
-                  alt="Profile"
-                />
+                <a href='/account'>
+                  <img 
+                    src={userData.photo || '/default-profile.png'}  
+                    className="profile-pic" 
+                    alt="Profile"
+                  />
+                </a>
               </div>
             ) : (
-              <div><FaUser/></div>
+              <div className='faue'><FaUser/></div>
             )}
-            <NavDropdown title="ACCOUNT" id="collapsible-nav-dropdown" className='head3'>
+            <NavDropdown
+              title="ACCOUNT"
+              id="collapsible-nav-dropdown"
+              className='head3'
+              show={dropdownOpen}
+              onMouseEnter={() => handleDropdownToggle(true)} 
+              onMouseLeave={() => handleDropdownToggle(false)} 
+            >
               <NavDropdown.Item className='drop' href="/signin">
                 <button className='login-btn'>LOG IN</button>
               </NavDropdown.Item>
@@ -107,7 +124,9 @@ const Navigation = () => {
         </Navbar.Collapse>
         <Nav.Link className='crt' href="/cart">
           <span className='cart'>
-            <i className="fa-solid fa-cart-shopping">{cartCount > 0 && <span className="item-count">{cartCount}</span>}</i>
+            <i className="fa-solid fa-cart-shopping">
+              {cartCount > 0 && <span className="item-count">{cartCount}</span>}
+            </i>
           </span>
         </Nav.Link>
       </Container>
