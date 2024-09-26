@@ -1,5 +1,5 @@
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import React from 'react';
+import { GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from 'firebase/auth';
+import React, { useEffect } from 'react';
 import { auth, db } from '../../FireBase';
 import { setDoc, doc, getDoc } from 'firebase/firestore';
 import { ToastContainer, toast } from 'react-toastify';
@@ -8,19 +8,16 @@ import { useNavigate } from 'react-router-dom';
 const GoogleSign = () => {
   const navigate = useNavigate();
 
-  const googleLogin = async () => {
-    const provider = new GoogleAuthProvider();
-
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-
+  // Effect to monitor auth state
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
+        // User is signed in
         const userDocRef = doc(db, 'Users', user.uid);
         const userDoc = await getDoc(userDocRef);
 
         if (!userDoc.exists()) {
-          // If not, create a new document
+          // Create a new document if it doesn't exist
           await setDoc(userDocRef, {
             email: user.email,
             firstName: user.displayName.split(' ')[0] || '',
@@ -31,10 +28,22 @@ const GoogleSign = () => {
 
         localStorage.setItem('token', user.accessToken);
         localStorage.setItem('user', JSON.stringify(user));
-        
+
         toast.success('Login Successful');
         navigate('/'); 
       }
+    });
+
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
+  }, [navigate]);
+
+  const googleLogin = async () => {
+    const provider = new GoogleAuthProvider();
+
+    try {
+      await signInWithPopup(auth, provider);
+      // The user will be handled in the onAuthStateChanged
     } catch (error) {
       console.error(error);
       toast.error(error.message, {
@@ -45,7 +54,6 @@ const GoogleSign = () => {
 
   return (
     <div className='glog'>
-
       <p className='google'>--- Or ---</p>
       <div className='gb'>
         <button onClick={googleLogin} className="gsi-material-button">
@@ -65,6 +73,7 @@ const GoogleSign = () => {
           </div>
         </button>
       </div>
+      <ToastContainer />
     </div>
   );
 };
