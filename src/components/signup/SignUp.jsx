@@ -9,6 +9,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { setDoc, doc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import './signin.css';
+import GoogleSign from './GoogleSign';
 
 export const SignUp = () => {
     const [first, setFirst] = useState("");
@@ -133,6 +134,7 @@ export const SignUp = () => {
                     {error && <div className='error-msg'>{error}</div>}
                 </form>
             </div>
+            <GoogleSign/>
         </div>
     );
 };
