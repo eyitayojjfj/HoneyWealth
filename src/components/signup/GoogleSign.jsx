@@ -8,16 +8,13 @@ import { useNavigate } from 'react-router-dom';
 const GoogleSign = () => {
   const navigate = useNavigate();
 
-  // Effect to monitor auth state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        // User is signed in
         const userDocRef = doc(db, 'Users', user.uid);
         const userDoc = await getDoc(userDocRef);
 
         if (!userDoc.exists()) {
-          // Create a new document if it doesn't exist
           await setDoc(userDocRef, {
             email: user.email,
             firstName: user.displayName.split(' ')[0] || '',
@@ -34,7 +31,6 @@ const GoogleSign = () => {
       }
     });
 
-    // Cleanup subscription on unmount
     return () => unsubscribe();
   }, [navigate]);
 
@@ -43,7 +39,6 @@ const GoogleSign = () => {
 
     try {
       await signInWithPopup(auth, provider);
-      // The user will be handled in the onAuthStateChanged
     } catch (error) {
       console.error(error);
       toast.error(error.message, {
