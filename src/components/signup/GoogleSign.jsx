@@ -44,7 +44,7 @@ const GoogleSign = () => {
   };
 
   return (
-    <div>
+    <div className='glog'>
 
       <p className='google'>--- Or ---</p>
       <div className='gb'>

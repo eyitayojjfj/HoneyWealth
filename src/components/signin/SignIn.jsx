@@ -103,11 +103,11 @@ const SignIn = () => {
                     <p onClick={handleReset} className='pass'><a href="/forgotpassword">Forgot Password?</a></p>
                     <p className='already'>Don't have an account yet? <a href="/signup">Create an Account</a></p>
 
-                    <GoogleSign />
                     
                     {error && <div className='error-msg'>{error}</div>}
                 </form>
             </div>
+            <GoogleSign />
         </div>
     );
 };
