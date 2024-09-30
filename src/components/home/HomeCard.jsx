@@ -5,8 +5,11 @@ import PropTypes from 'prop-types';
 import { db } from '../../FireBase'; 
 import { doc, updateDoc, arrayUnion, arrayRemove, getDoc } from 'firebase/firestore';
 import { useAuth } from '../account/AuthContext'; 
+import { useNavigate } from 'react-router-dom';
 
 const HomeCard = ({ name, img, price, func }) => {
+  
+  const navigate = useNavigate();
   const [isInWishlist, setIsInWishlist] = useState(false);
   const { currentUser } = useAuth(); 
 
@@ -40,7 +43,7 @@ const HomeCard = ({ name, img, price, func }) => {
         console.error("Failed to add product to cart", error);
       }
     } else {
-      alert("Please log in to add items to your cart.");
+      navigate('/signin');
     }
   };
 
@@ -66,7 +69,7 @@ const HomeCard = ({ name, img, price, func }) => {
         console.error("Failed to update wishlist", error);
       }
     } else {
-      alert("Please log in to manage your wishlist.");
+      navigate('/signin');
     }
   };
 
