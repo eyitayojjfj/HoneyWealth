@@ -59,9 +59,21 @@ const Checkout = () => {
         navigate('/');
     };
 
+    const parsePrice = (priceString) => {
+        const price = parseFloat(priceString.replace(/[^0-9.-]+/g, ""));
+        return isNaN(price) ? 0 : price;
+    };
+
+    const formatPrice = (price) => {
+        return new Intl.NumberFormat('en-NG', {
+            style: 'currency',
+            currency: 'NGN',
+        }).format(price);
+    };
+
     const calculateTotalPrice = () => {
         return cart.reduce((total, item) => {
-            const price = parseFloat(item.price) || 0;
+            const price = parsePrice(item.price) || 0;
             const quantity = item.quantity || 1;
             return total + (price * quantity);
         }, 0).toFixed(2);
@@ -184,7 +196,6 @@ const Checkout = () => {
                         )}
                     </div>
                 </div>
-              
 
                 <div className="section">
                     <h2>Payment Information</h2>
@@ -226,12 +237,12 @@ const Checkout = () => {
                         <ul>
                             {cart.map((item, index) => (
                                 <li key={item.id || index}>
-                                    {item.name} - ₦ {(parseFloat(item.price) * (item.quantity || 1)).toFixed(2)} x {item.quantity || 1}
+                                    {item.name} - {formatPrice(parsePrice(item.price) * (item.quantity || 1))} x {item.quantity || 1}
                                 </li>
                             ))}
                         </ul>
                         <p><strong>Total Quantity: {calculateTotalQuantity()}</strong></p>
-                        <p><strong>Total Price: ₦ {calculateTotalPrice()}</strong></p>
+                        <p><strong>Total Price: {formatPrice(calculateTotalPrice())}</strong></p>
                     </div>
                 </div>
 

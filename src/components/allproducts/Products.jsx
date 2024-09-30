@@ -8,7 +8,7 @@ import './Products.css';
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true); 
-  const [error, setError] = useState(null); // State for error handling
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const formatPrice = (price) => {
@@ -26,7 +26,7 @@ const Products = () => {
       setProducts(productList);
     } catch (error) {
       console.error("Error fetching products:", error);
-      setError("Failed to load products. Please try again later."); // Set error message
+      setError("Failed to load products. Please try again later."); 
     } finally {
       setLoading(false);
     }

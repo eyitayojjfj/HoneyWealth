@@ -47,26 +47,34 @@ const CartPageAdd = () => {
         setCart(updatedCart);
 
         const userCartRef = doc(db, 'Users', currentUser.uid);
-        await updateDoc(userCartRef, {
-            cart: updatedCart
-        });
+        await updateDoc(userCartRef, { cart: updatedCart });
     };
 
     const handleRemove = async (index) => {
-        if (window.confirm('Are you sure you want to remove this item from your cart?')) {
+        if (currentUser) {
             const updatedCart = cart.filter((_, i) => i !== index);
             setCart(updatedCart);
 
             const userCartRef = doc(db, 'Users', currentUser.uid);
-            await updateDoc(userCartRef, {
-                cart: updatedCart
-            });
+            await updateDoc(userCartRef, { cart: updatedCart });
         }
+    };
+
+    const parsePrice = (priceString) => {
+        const price = parseFloat(priceString.replace(/[^0-9.-]+/g, ""));
+        return isNaN(price) ? 0 : price;
+    };
+
+    const formatPrice = (price) => {
+        return new Intl.NumberFormat('en-NG', {
+            style: 'currency',
+            currency: 'NGN',
+        }).format(price);
     };
 
     const calculateTotalPrice = () => {
         return cart.reduce((total, item) => {
-            const price = parseFloat(item.price) || 0;
+            const price = parsePrice(item.price);
             const quantity = item.quantity || 1;
             return total + (price * quantity);
         }, 0).toFixed(2);
@@ -83,32 +91,31 @@ const CartPageAdd = () => {
     return (
         <div className="cart-page">
             <h1>Your Cart</h1>
-            {error && <p className="error-message">{error}</p>} {/* Display error message */}
+            {error && <p className="error-message">{error}</p>}
             {cart.length === 0 ? (
                 <p>Your cart is empty!</p>
             ) : (
                 <div>
                     <ul>
                         {cart.map((item, index) => {
-                            const price = parseFloat(item.price) || 0;
-                            const quantity = item.quantity || 1;
+                            const price = parsePrice(item.price);
                             return (
                                 <li key={item.id || index} className="cart-item">
                                     <img src={item.img || 'default-image.png'} alt={`Image of ${item.name}`} />
                                     <div className="cart-item-info">
                                         <h3>{item.name}</h3>
-                                        <p>₦ {price.toFixed(2)}</p>
+                                        <p>{formatPrice(price)}</p> 
                                         <p>Available</p>
                                         <div className="quantity-controls">
                                             <button 
                                                 className='btn3' 
                                                 onClick={() => handleQuantityChange(index, -1)} 
-                                                disabled={quantity <= 1}
+                                                disabled={item.quantity <= 1}
                                                 aria-label={`Decrease quantity of ${item.name}`}
                                             >
                                                 -
                                             </button>
-                                            <span>{quantity}</span>
+                                            <span>{item.quantity || 1}</span>
                                             <button 
                                                 className='btn3' 
                                                 onClick={() => handleQuantityChange(index, 1)}
@@ -132,10 +139,10 @@ const CartPageAdd = () => {
                         })}
                     </ul>
                     <div className="cart-total">
-                        <h2>Total Price: ₦ {calculateTotalPrice()}</h2>
+                        <h2>Total Price: {formatPrice(calculateTotalPrice())}</h2> 
                     </div>
                     <div className="cart-checkout">
-                        <button className='btn5' onClick={handleCheckout}>Checkout (₦ {calculateTotalPrice()})</button>
+                        <button className='btn5' onClick={handleCheckout}>Checkout ( {formatPrice(calculateTotalPrice())} )</button>
                     </div>
                 </div>
             )}
