@@ -108,6 +108,14 @@
   .admin  a:link{
     text-decoration: none;
   }
+  #price{
+    padding-left: 8px;
+    margin-left: -11px;
+    }
+    #con{
+      padding-left: 8px;
+      margin-left: 28px;
+    }
   
   
   @media (max-width: 1024px) {
@@ -133,7 +141,7 @@
         padding-left: 8px;
         margin-left: 28px;
       }
-      
+
     .scoot {
       text-align: center;
       margin-bottom: -50px;
