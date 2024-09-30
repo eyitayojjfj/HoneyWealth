@@ -46,6 +46,13 @@ section h1{
   text-decoration: none;
   
 }
+.btn2 a:hover{
+  background-color: whitesmoke;
+  
+}
+.btn2:hover{
+background-color: whitesmoke;  
+}
  .product-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -177,6 +184,14 @@ section h1{
 .section .butt{
         text-align: center;
     }
+    #price{
+      padding-left: 8px;
+      margin-left: -11px;
+      }
+      #con{
+        padding-left: 8px;
+        margin-left: 28px;
+      }
 
     .product-grid {
         grid-template-columns: repeat(2, 1fr);

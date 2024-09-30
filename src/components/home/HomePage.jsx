@@ -20,7 +20,7 @@ const HomePage = () => {
   const formatPrice = (price) => {
     return new Intl.NumberFormat('en-NG', {
       style: 'currency',
-      currency: 'NGN', // Set to Naira
+      currency: 'NGN', 
     }).format(price);
   };
 
@@ -57,7 +57,7 @@ const HomePage = () => {
               key={product.id}
               img={product.productImage} 
               name={product.productName}
-              price={formatPrice(product.productPrice)} // Format the price here
+              price={formatPrice(product.productPrice)} 
               func={() => openProductDetails(product.id)} 
             />
           ))}

@@ -84,8 +84,10 @@ const WomenCard = ({ name, img, price, func }) => {
         <Card.Title>{name}</Card.Title>
         <p className='stock'>Available</p>
         <Card.Text>
+        <span id='price'>
           {price}
-          <span>
+          </span>
+          <span id='con'>
             <i 
               className={`fa-heart${isInWishlist ? ' fa-solid' : ' fa-regular'}`} 
               style={{ color: isInWishlist ? 'red' : 'gray' }} 
