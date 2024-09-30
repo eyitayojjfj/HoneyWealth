@@ -11,6 +11,13 @@ const WomenPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('en-NG', {
+      style: 'currency',
+      currency: 'NGN', // Set to Naira
+    }).format(price);
+  };
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -37,7 +44,7 @@ const WomenPage = () => {
   if (loading) {
     return (
       <div className="loading-spinner">
-        <img src="/public/spin.gif" alt="Loading..." />
+        <img src="/spin.gif" alt="Loading..." />
       </div>
     );
   }
@@ -63,7 +70,7 @@ const WomenPage = () => {
               key={product.id}
               img={product.productImage} 
               name={product.productName}
-              price={product.productPrice} 
+              price={formatPrice(product.productPrice)} // Format the price here
               func={() => openProductDetails(product.id)}
             />
           ))

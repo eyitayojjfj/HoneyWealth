@@ -11,6 +11,8 @@
 
 body{
   background-color: whitesmoke  ;
+  padding-top: 70px; /* Adjust according to your navbar height */
+
 }
 span{
   margin-left: 80px;

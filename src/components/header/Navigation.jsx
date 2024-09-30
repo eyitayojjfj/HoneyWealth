@@ -56,7 +56,7 @@ const Navigation = () => {
   };
 
   return (
-    <Navbar collapseOnSelect expand="lg" className="cont" expanded={!isCollapsed}>
+    <Navbar collapseOnSelect expand="lg" className="cont fixed-top" expanded={!isCollapsed}>
       <Container>
         <Navbar.Brand href="/" className='head'>
           <img src="/images/lg.jpg" width="70px" height="50px" alt="Logo" />

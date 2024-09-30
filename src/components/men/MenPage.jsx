@@ -10,6 +10,13 @@ const MenPage = () => {
   const [loading, setLoading] = useState(true); 
   const navigate = useNavigate();
 
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('en-NG', {
+      style: 'currency',
+      currency: 'NGN', // Set to Naira
+    }).format(price);
+  };
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -43,7 +50,7 @@ const MenPage = () => {
 
       {loading ? (
         <div className="loading-spinner">
-          <img src="/public/spin.gif" alt="Loading..." />
+          <img src="/spin.gif" alt="Loading..." />
         </div>
       ) : (
         <div className='product-grid'>
@@ -53,7 +60,7 @@ const MenPage = () => {
                 key={product.id} 
                 img={product.productImage}
                 name={product.productName}
-                price={product.productPrice}
+                price={formatPrice(product.productPrice)} // Format the price here
                 func={() => openProductDetails(product.id)}
               />
             ))

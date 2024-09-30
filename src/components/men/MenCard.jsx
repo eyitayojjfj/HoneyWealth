@@ -84,7 +84,7 @@ const MenCard = ({ name, img, price, func }) => {
         <Card.Title>{name}</Card.Title>  
         <p className='stock'>Available</p>
         <Card.Text>
-          ₦ {price}
+           {price}
           <span>
             <i 
               className={`fa-heart${isInWishlist ? ' fa-solid' : ' fa-regular'}`} 

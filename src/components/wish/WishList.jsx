@@ -59,7 +59,7 @@ const Wishlist = () => {
             <Card.Body>
               <Card.Title>{product.name}</Card.Title>
               <Card.Text>
-                ₦ {product.price}
+                 {product.price}
               </Card.Text>
               <Button className='wish-button' variant="primary" onClick={() => handleRemoveFromWishlist(product.name)}>Remove from Wishlist</Button>
             </Card.Body>

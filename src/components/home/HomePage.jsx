@@ -17,6 +17,13 @@ const HomePage = () => {
     navigate(`/homeproduct/${id}`);
   };
 
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('en-NG', {
+      style: 'currency',
+      currency: 'NGN', // Set to Naira
+    }).format(price);
+  };
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -50,14 +57,14 @@ const HomePage = () => {
               key={product.id}
               img={product.productImage} 
               name={product.productName}
-              price={product.productPrice} 
+              price={formatPrice(product.productPrice)} // Format the price here
               func={() => openProductDetails(product.id)} 
             />
           ))}
         </div>
 
         <div className='container2'>
-        <div className='honey'>
+          <div className='honey'>
             <h1><MdLockPerson /></h1>
             <h5>Secured Payments</h5>
             <p>Your security is our priority. At Honey_Fragrance Store, we use the latest encryption technology to ensure that all transactions are safe and secure. Shop with confidence knowing that your personal and payment information is protected. Our secure payment options make your shopping experience smooth and worry-free.</p>
@@ -65,12 +72,12 @@ const HomePage = () => {
           <div className='honey'>
             <h1><GiDelicatePerfume /></h1>
             <h5>Best Quality</h5>
-            <p>At Honey_Fragrance Store, we pride ourselves on delivering the finest quality fragrances. Each perfume is crafted using premium ingredients sourced from around the globe, ensuring that every scent embodies purity and sophistication. </p>
+            <p>At Honey_Fragrance Store, we pride ourselves on delivering the finest quality fragrances. Each perfume is crafted using premium ingredients sourced from around the globe, ensuring that every scent embodies purity and sophistication.</p>
           </div>
           <div className='honey'>
             <h1><IoMdPricetag /></h1>
             <h5>Best Offers</h5>
-            <p>We believe that exceptional quality should be accessible. That’s why we offer incredible value through exclusive deals and promotions on our premium perfumes. Whether you're indulging in a signature scent or gifting someone special, you can enjoy our high-end fragrances at unbeatable prices. </p>
+            <p>We believe that exceptional quality should be accessible. That’s why we offer incredible value through exclusive deals and promotions on our premium perfumes. Whether you're indulging in a signature scent or gifting someone special, you can enjoy our high-end fragrances at unbeatable prices.</p>
           </div>
         </div>
         <aside>

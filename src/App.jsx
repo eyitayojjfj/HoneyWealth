@@ -5,7 +5,6 @@ import HomePage from './components/home/HomePage';
 import Products from './components/allproducts/Products';
 import MenPage from './components/men/MenPage';
 import WomenPage from './components/women/WomenPage';
-import CartPage from './components/cart/CartPage';
 import WishList from './components/wish/WishList';
 import SignIn from './components/signin/SignIn';
 import SignUp from './components/signup/SignUp';
@@ -29,6 +28,7 @@ import AddMen from './components/men/AddMen';
 import MenDetails from './components/men/MenDetails';
 import AddHomeProducts from './components/home/AddHomeProducts';
 import HomeProductDetails from './components/home/HomeProductDetail';
+import CartPageAdd from './components/cart/CartPageAdd';
 
 function App() {
   const [user, setUser] = useState();
@@ -61,9 +61,8 @@ function App() {
           <Route path="/add-men" element={<AddMen/>} />
           <Route path="/forgotpassword" element={<Reset/>} />
           <Route path="/women" element={<WomenPage />} />
-          <Route path="/cart" element={<CartPage />} />
+          <Route path="/cart" element={<CartPageAdd/>} />
           <Route path="/wish" element={<WishList />} />
-          <Route path="/cart" element={<CartPage />} />
           <Route path="/signin" element={user ? <Navigate to='/account'/> : <SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/account" element={<Profile />} />

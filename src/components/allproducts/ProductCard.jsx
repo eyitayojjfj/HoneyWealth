@@ -38,7 +38,6 @@ const ProductCard = ({ name, img, price, func }) => {
         await updateDoc(userDocRef, {
           cart: arrayUnion(product),
         });
-        alert(`${name} added to cart!`);
       } catch (error) {
         console.error("Failed to add product to cart", error);
       }
@@ -85,7 +84,7 @@ const ProductCard = ({ name, img, price, func }) => {
         <Card.Title>{name}</Card.Title>  
         <p className='stock'>Available</p>
         <Card.Text>
-          ₦ {price}
+           {price}
           <span>
             <i 
               className={`fa-heart${isInWishlist ? ' fa-solid' : ' fa-regular'}`} 

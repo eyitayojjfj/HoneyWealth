@@ -1,6 +1,5 @@
-// context/AuthContext.js
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { auth } from '../../FireBase'; // Your Firebase setup
+import { auth } from '../../FireBase'; 
 
 const AuthContext = createContext();
 
@@ -11,7 +10,7 @@ export const AuthProvider = ({ children }) => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       setCurrentUser(user);
     });
-    return () => unsubscribe(); // Clean up subscription on unmount
+    return () => unsubscribe(); 
   }, []);
 
   return (

@@ -8,7 +8,15 @@ import './Products.css';
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); // State for error handling
   const navigate = useNavigate();
+
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('en-NG', {
+      style: 'currency',
+      currency: 'NGN',
+    }).format(price);
+  };
 
   const fetchProducts = async () => {
     try {
@@ -18,6 +26,7 @@ const Products = () => {
       setProducts(productList);
     } catch (error) {
       console.error("Error fetching products:", error);
+      setError("Failed to load products. Please try again later."); // Set error message
     } finally {
       setLoading(false);
     }
@@ -38,21 +47,25 @@ const Products = () => {
       </div>
 
       {loading ? (
-        <div className="loading-spinner">
+        <div className="loading-spinner" aria-live="polite">
           <img src="/spin.gif" alt="Loading..." />
         </div>
-      ) : (
+      ) : error ? (
+        <p className="error-message">{error}</p> 
+      ) : products.length > 0 ? (
         <div className='product-grid'>
           {products.map((product) => (
             <ProductCard 
               key={product.id} 
               img={product.productImage} 
               name={product.productName} 
-              price={product.productPrice} 
+              price={formatPrice(product.productPrice)} 
               func={() => openProductDetails(product.id)}
             />
           ))}
         </div>
+      ) : (
+        <p>No products available.</p>
       )}
     </div>
   );

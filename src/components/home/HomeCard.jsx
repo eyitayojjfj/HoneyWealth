@@ -8,7 +8,7 @@ import { useAuth } from '../account/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const HomeCard = ({ name, img, price, func }) => {
-  
+
   const navigate = useNavigate();
   const [isInWishlist, setIsInWishlist] = useState(false);
   const { currentUser } = useAuth(); 
@@ -85,7 +85,7 @@ const HomeCard = ({ name, img, price, func }) => {
         <Card.Title>{name}</Card.Title>
         <p className='stock'>Available</p>
         <Card.Text>
-          ₦ {price}
+           {price}
           <span>
             <i 
               className={`fa-heart${isInWishlist ? ' fa-solid' : ' fa-regular'}`} 
