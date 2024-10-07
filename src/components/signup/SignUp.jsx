@@ -5,9 +5,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../FireBase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import { setDoc, doc } from 'firebase/firestore';
-import { toast } from 'react-toastify';
 import './signin.css';
 import GoogleSign from './GoogleSign';
 
@@ -32,6 +31,9 @@ export const SignUp = () => {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
+            
+            await sendEmailVerification(user);
+            
             localStorage.setItem('token', user.accessToken);
             localStorage.setItem('user', JSON.stringify(user));
 
@@ -44,16 +46,12 @@ export const SignUp = () => {
             });
 
             console.log('Account Created');
-            toast.success('Registration Successful!', {
-                position: "top-center",
-            });
+            alert('Registration Successful! A verification email has been sent to your email address.');
 
             navigate('/'); 
         } catch (error) {
             console.error(error);
-            toast.error(error.message, {
-                position: "bottom-center",
-            });
+            alert(error.message);  
             setError(error.message); 
         }
     };
@@ -108,7 +106,7 @@ export const SignUp = () => {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                         <span className='eyes2' onClick={() => setShowPassword(!showPassword)} style={{ cursor: 'pointer' }}>
-                            {showPassword ? <FaRegEyeSlash /> : <IoEyeSharp />}
+                            {showPassword ?  <IoEyeSharp /> : <FaRegEyeSlash /> }
                         </span>
                     </Form.Group>
 
@@ -122,7 +120,7 @@ export const SignUp = () => {
                             onChange={(e) => setAgain(e.target.value)}
                         />
                         <span className='eyes2' onClick={() => setShowPassword(!showPassword)} style={{ cursor: 'pointer' }}>
-                            {showPassword ? <FaRegEyeSlash /> : <IoEyeSharp />}
+                            {showPassword ? <IoEyeSharp /> : <FaRegEyeSlash />}
                         </span>
                     </Form.Group>
                     

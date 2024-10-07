@@ -30,6 +30,16 @@
     justify-content: center;
     
   }
+  .product-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  .product-card.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
   
   .product-card {
     border: 1px solid #ddd;

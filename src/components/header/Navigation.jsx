@@ -24,7 +24,6 @@ const Navigation = () => {
         if (userDoc.exists()) {
           setUserData(userDoc.data());
           
-          // Set up a Firestore listener for cart updates
           const unsubscribeCart = onSnapshot(userDocRef, (doc) => {
             if (doc.exists()) {
               const cart = doc.data().cart || [];
@@ -34,13 +33,13 @@ const Navigation = () => {
             }
           });
 
-          return () => unsubscribeCart(); // Cleanup listener
+          return () => unsubscribeCart(); 
         } else {
           setUserData(null); 
         }
       } else {
         setUserData(null);
-        setCartCount(0); // Reset cart count if user is logged out
+        setCartCount(0);
       }
     });
 

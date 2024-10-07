@@ -92,7 +92,7 @@ const SignIn = () => {
                             className={`eyes ${showPassword ? 'eye' : 'eye-slash'}`}
                             style={{ cursor: 'pointer', transform: 'translateY(-50%)' }}
                         >
-                            {showPassword ? <FaRegEyeSlash /> : <IoEyeSharp />}
+                            {showPassword ?  <IoEyeSharp />: <FaRegEyeSlash /> }
                         </div>
                     </Form.Group>
                     <Button className='sign-button' variant="primary" type="submit">

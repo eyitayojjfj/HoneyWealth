@@ -18,19 +18,19 @@ const Footer = () => {
     < footer >
       <div className='grid'>
    <div className='fut'>
-    <div><h5>ABOUT US</h5></div>
+    <div><h5><b>ABOUT US</b></h5></div>
     <p>Honey_Fragrance Store, we specialize in selling exquisite perfumes that captivate  the senses. Whether you're looking  for the perfect scent to express  your individuality or a gift that  leaves a lasting impression, our  curated collection has something for everyone.</p>
     </div>
 
     <div className='fut'>
-    <div><h5>CONTACT US</h5></div>
+    <div><h5><b>CONTACT US</b></h5></div>
     <p><IoLocationSharp />CITS University Of Lagos</p>
     <p><FaPhone />+234 704 819 8913</p>
     <p><BiLogoGmail /> honeywealth.fragrances@gmail.com</p>
     </div>
   
     <div className='us'>
-    <div ><h5>INFORMATION</h5></div>
+    <div ><h5><b>INFORMATION</b></h5></div>
    <ul>
     <li><a href="/about">About</a></li>
     <li><a href="/contact">Contact</a></li>
@@ -38,7 +38,7 @@ const Footer = () => {
     <li><a href="terms">Terms And Conditions</a></li>
    </ul>
     </div>
-    <div className='social'><h5>FOLLOW US</h5>
+    <div className='social'><h5><b>FOLLOW US</b></h5>
      <a href="https://instagram.com/honey_wealthfragrances?utm_source=qr&igshid=NGExMmI2YTkyZg%3D%3D"><FaInstagram /></a>
      <a href="https://wa.me/c/2347048198913"><FaWhatsapp /></a>
      <a href="https://www.snapchat.com/add/honey_wealthf?share_id=6eRELp92Cuo&locale=en-US"><FaSnapchat /></a>

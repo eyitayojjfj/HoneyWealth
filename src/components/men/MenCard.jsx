@@ -1,6 +1,6 @@
+import React, { useState, useEffect, useRef } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import React, { useState, useEffect } from 'react';
 import { db } from '../../FireBase'; 
 import { doc, updateDoc, arrayUnion, arrayRemove, getDoc } from 'firebase/firestore';
 import { useAuth } from '../account/AuthContext'; 
@@ -9,7 +9,9 @@ import { useNavigate } from 'react-router-dom';
 const MenCard = ({ name, img, price, func }) => {
   const navigate = useNavigate();
   const [isInWishlist, setIsInWishlist] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const { currentUser } = useAuth(); 
+  const cardRef = useRef(null);
 
   useEffect(() => {
     const checkWishlist = async () => {
@@ -26,6 +28,27 @@ const MenCard = ({ name, img, price, func }) => {
     checkWishlist();
   }, [name, currentUser]);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      });
+    });
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+
+    return () => {
+      if (cardRef.current) {
+        observer.unobserve(cardRef.current);
+      }
+    };
+  }, []);
+
   const handleAddToCart = async (event) => {
     event.stopPropagation();
     const product = { name, img, price };
@@ -36,7 +59,6 @@ const MenCard = ({ name, img, price, func }) => {
         await updateDoc(userDocRef, {
           cart: arrayUnion(product),
         });
-        alert(`${name} added to cart!`);
       } catch (error) {
         console.error("Failed to add product to cart", error);
       }
@@ -72,7 +94,7 @@ const MenCard = ({ name, img, price, func }) => {
   };
 
   return (
-    <Card className='product-card' onClick={func}>
+    <Card className={`product-card ${isVisible ? 'fade-in' : ''}`} onClick={func} ref={cardRef}>
       <Card.Img 
         className='product-card-img' 
         variant="top" 
@@ -84,9 +106,7 @@ const MenCard = ({ name, img, price, func }) => {
         <Card.Title>{name}</Card.Title>  
         <p className='stock'>Available</p>
         <Card.Text>
-        <span id='price'>
-          {price}
-          </span>
+          <span id='price'>{price}</span>
           <span id='con'>
             <i 
               className={`fa-heart${isInWishlist ? ' fa-solid' : ' fa-regular'}`} 

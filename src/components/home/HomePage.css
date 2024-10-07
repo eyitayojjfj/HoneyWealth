@@ -1,8 +1,9 @@
 section{
   background-image: url(/images/bg2.jpg);
   background-repeat: no-repeat;
-  min-height: 700px;
-  background-size: cover;
+  background-size: 1300px 700px;
+  min-height: 500px;
+  background-attachment: fixed;
   background-position: center;
   color: white;
   padding-bottom: 300px;
@@ -13,6 +14,17 @@ section{
  gap: 60px;
   
 }
+.product-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.product-card.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 section h1{
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 60px;
@@ -185,12 +197,44 @@ background-color: whitesmoke;
 
 
 @media (max-width: 768px) {
-    .section h1{
+   
+  .section{
+      background-image: url(/images/bg2.jpg);
+      background-repeat: no-repeat;
+      background-size: 1300px 600px;
+     min-height: 400px;
+      background-attachment: scroll;
+      background-position: center;
+      color: white;
+      padding-bottom: 300px;
+     display: flex;
+     justify-content: start;
+     padding:70px 70px;
+     flex-direction: column;
+     gap: 60px;
+  }
+  .section h1{
         text-align: center;
         font-size: 40px;
+        padding-bottom: 90px;
+        
     }
 .section .butt{
         text-align: center;
+        padding-bottom: 65px;
+    }
+    .sec{
+      padding-top: 30px;
+      margin-bottom: 75px;
+    }
+    .sec2{
+      padding-bottom: 0px;
+      padding-left: 0px;
+    }
+    .sec h1{
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      text-align: center;
+      font-size: 25px;
     }
     #price{
       padding-left: 8px;
@@ -259,6 +303,7 @@ background-color: whitesmoke;
   }
 
 @media (max-width:560px) {
+  
     .product-grid {
         grid-template-columns: repeat(2, 1fr);
         padding-left: 10px;
