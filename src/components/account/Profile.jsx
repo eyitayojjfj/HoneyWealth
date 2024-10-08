@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { auth, db } from '../../FireBase'; 
+import { auth, db } from '../../FireBase';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from 'react-toastify';
 import { doc, getDoc } from 'firebase/firestore';
 import './ProfilePage.css';
+import SideBar from './SideBar';
 
 const Profile = () => {
     const [loading, setLoading] = useState(true);
@@ -19,7 +20,7 @@ const Profile = () => {
                     try {
                         const userDocRef = doc(db, 'Users', currentUser.uid);
                         const userDoc = await getDoc(userDocRef);
-                        
+
                         if (userDoc.exists()) {
                             setUserData(userDoc.data());
                         } else {
@@ -60,25 +61,29 @@ const Profile = () => {
     }
 
     return (
-        <> 
-        <ToastContainer/>
-        <div className='profile' style={{ display: 'flex', justifyContent: 'center' }}>
-            {userData ? (
-                <div className='profile-info'>
-                    <h1>Profile</h1>
-                    <div>
-                        <img src={userData.photo || '/default-profile.png'} alt="Profile" width={'40%'} style={{ borderRadius: '50%' }} />
-                    </div>
-                    <p><strong>Email:</strong> {userData.email}</p>
-                    <p><strong>Display Name:</strong> {userData.firstName} {userData.lastName || 'Not provided'}</p>
-                    <button onClick={handleLogout} className="logout-button">
-                        Logout
-                    </button>
+        <>
+            <ToastContainer />
+            <div className="profile-container">
+              <SideBar/>
+
+                <div className='profile' style={{ display: 'flex', justifyContent: 'center' }}>
+                    {userData ? (
+                        <div className='profile-info'>
+                            <h1>Profile</h1>
+                            <div>
+                                <img src={userData.photo || '/default-profile.png'} alt="Profile" width={'40%'} style={{ borderRadius: '50%' }} />
+                            </div>
+                            <p><strong>Email:</strong> {userData.email}</p>
+                            <p><strong>Display Name:</strong> {userData.firstName} {userData.lastName || 'Not provided'}</p>
+                            <button onClick={handleLogout} className="logout-button">
+                                Logout
+                            </button>
+                        </div>
+                    ) : (
+                        <div>No user data available.</div>
+                    )}
                 </div>
-            ) : (
-                <div>No user data available.</div>
-            )}
-        </div>
+            </div>
         </>
     );
 };

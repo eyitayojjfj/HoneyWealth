@@ -29,6 +29,7 @@ import MenDetails from './components/men/MenDetails';
 import AddHomeProducts from './components/home/AddHomeProducts';
 import HomeProductDetails from './components/home/HomeProductDetail';
 import CartPageAdd from './components/cart/CartPageAdd';
+import OrderHistory from './components/account/OrderHistory';
 
 function App() {
   const [user, setUser] = useState();
@@ -59,6 +60,7 @@ function App() {
           <Route path="/add-home" element={<AddHomeProducts/>} />
           <Route path="/add" element={<AddWomen/>} />
           <Route path="/add-men" element={<AddMen/>} />
+          <Route path="/order-history" element={<OrderHistory />} />
           <Route path="/forgotpassword" element={<Reset/>} />
           <Route path="/women" element={<WomenPage />} />
           <Route path="/cart" element={<CartPageAdd/>} />

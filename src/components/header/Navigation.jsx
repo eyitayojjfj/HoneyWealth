@@ -4,17 +4,28 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FaUser } from 'react-icons/fa';
-import { auth, db } from '../../FireBase'; 
+import { auth, db } from '../../FireBase';
 import { doc, getDoc, onSnapshot } from 'firebase/firestore';
 import { RiMenu2Line } from "react-icons/ri";
 import { IoCloseOutline } from 'react-icons/io5';
-import './Navigation.css'; 
+import './Navigation.css';
 
 const Navigation = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [cartCount, setCartCount] = useState(0);
   const [userData, setUserData] = useState(null);
-  const [dropdownOpen, setDropdownOpen] = useState(false); 
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  // Function to log the user out
+  const handleLogout = async () => {
+    try {
+      await auth.signOut(); // Logs the user out
+      setUserData(null);     // Reset user data
+      setCartCount(0);       // Reset cart count
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
@@ -23,7 +34,7 @@ const Navigation = () => {
         const userDoc = await getDoc(userDocRef);
         if (userDoc.exists()) {
           setUserData(userDoc.data());
-          
+
           const unsubscribeCart = onSnapshot(userDocRef, (doc) => {
             if (doc.exists()) {
               const cart = doc.data().cart || [];
@@ -33,9 +44,9 @@ const Navigation = () => {
             }
           });
 
-          return () => unsubscribeCart(); 
+          return () => unsubscribeCart();
         } else {
-          setUserData(null); 
+          setUserData(null);
         }
       } else {
         setUserData(null);
@@ -43,7 +54,7 @@ const Navigation = () => {
       }
     });
 
-    return () => unsubscribe(); 
+    return () => unsubscribe();
   }, []);
 
   const handleToggle = () => {
@@ -97,8 +108,9 @@ const Navigation = () => {
                 </a>
               </div>
             ) : (
-              <div className='faue'><FaUser/></div>
+              <div className='faue'><FaUser /></div>
             )}
+
             <NavDropdown
               title="ACCOUNT"
               id="collapsible-nav-dropdown"
@@ -107,20 +119,33 @@ const Navigation = () => {
               onMouseEnter={() => handleDropdownToggle(true)} 
               onMouseLeave={() => handleDropdownToggle(false)} 
             >
-              <NavDropdown.Item className='drop' href="/signin">
-                <button className='login-btn'>LOG IN</button>
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item className='drop2' href="/account">
-                MY ACCOUNT
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item className='drop2' href="/wish">
-                WISH LIST
-              </NavDropdown.Item>
+              {userData ? (
+                <>
+                  <NavDropdown.Item className='drop' onClick={handleLogout}>
+                    <button className='login-btn'>LOG OUT</button>
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item className='drop2' href="/account">
+                    MY ACCOUNT
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item className='drop2' href="/wish">
+                    WISH LIST
+                  </NavDropdown.Item>
+                </>
+              ) : (
+                <>
+                  <NavDropdown.Item className='drop' href="/signin">
+                    <button className='login-btn'>LOG IN</button>
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  
+                </>
+              )}
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
+
         <Nav.Link className='crt' href="/cart">
           <span className='cart'>
             <i className="fa-solid fa-cart-shopping">

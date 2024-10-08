@@ -42,7 +42,7 @@ const CartPageAdd = () => {
 
     const handleQuantityChange = async (index, delta) => {
         const updatedCart = [...cart];
-        const newQuantity = Math.max(1, (updatedCart[index].quantity || 1) + delta);
+        const newQuantity = Math.max(0, (updatedCart[index].quantity || 0) + delta);
         updatedCart[index].quantity = newQuantity;
         setCart(updatedCart);
 
@@ -110,7 +110,7 @@ const CartPageAdd = () => {
                                             <button 
                                                 className='btn3' 
                                                 onClick={() => handleQuantityChange(index, -1)} 
-                                                disabled={item.quantity <= 1}
+                                                disabled={item.quantity == 1}
                                                 aria-label={`Decrease quantity of ${item.name}`}
                                             >
                                                 -
@@ -139,7 +139,7 @@ const CartPageAdd = () => {
                         })}
                     </ul>
                     <div className="cart-total">
-                        <h2>Total Price: {formatPrice(calculateTotalPrice())}</h2> 
+                        <h2>Sub Total: {formatPrice(calculateTotalPrice())}</h2> 
                     </div>
                     <div className="cart-checkout">
                         <button className='btn5' onClick={handleCheckout}>Checkout ( {formatPrice(calculateTotalPrice())} )</button>

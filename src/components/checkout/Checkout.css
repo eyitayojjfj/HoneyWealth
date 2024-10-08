@@ -43,12 +43,12 @@ button {
     border-radius: 4px;
     cursor: pointer;
 }
+
 .shipping-method {
     margin-bottom: 20px;
 }
 
 .shipping-method h2 {
-    font-size: 18px;
     margin-bottom: 10px;
 }
 
@@ -71,13 +71,14 @@ button {
 .option.selected {
     background-color: #f8f9fa; 
 }
+
 .option:not(.selected) label::before {
     border-color: grey;
 }
+
 .option.selected label::before {
     border-color: #8A6BFF; 
 }
-
 
 .option input[type="radio"] {
     display: none;
@@ -106,28 +107,31 @@ button {
 .option.selected label::before {
     background-color: #8A6BFF;
 }
-.option:not(.selected) label{
- color: black;
+
+.option:not(.selected) label {
+    color: black;
 }
+
 .option.selected label {
     color: #8A6BFF;
 }
 
 .pickup-address {
     margin-top: 15px;
-
 }
-.pickup{
+
+.pickup {
     transition: transform 0.5s ease;
-
 }
+
 .pickup-address input {
     width: 100%;
     padding: 10px;
     font-size: 14px;
     border: 2px solid #CBC9FF;
-    border-radius: 8px;
+    border-radius: 8px;
 }
+
 .pickup-address {
     font-size: 16px;
     color: #8A6BFF;
@@ -135,4 +139,99 @@ button {
     align-items: center;
     width: 100%;
     cursor: pointer;
+}
+
+/* Media Query for Mobile Devices (max-width: 768px) */
+@media (max-width: 768px) {
+    .checkout-container {
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .section {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-size: 14px;
+    }
+
+    input, textarea, select {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    button {
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+
+    .option {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .option label {
+        font-size: 14px;
+        display: block;
+    }
+
+    .option label::before {
+        margin-right: 10px;
+    }
+
+    .pickup-address {
+        font-size: 14px;
+    }
+}
+
+/* Media Query for Tablets (max-width: 1024px) */
+@media (max-width: 1024px) {
+    .checkout-container {
+        padding: 20px;
+        max-width: 95%;
+    }
+
+    h1 {
+        font-size: 26px;
+        margin-bottom: 20px;
+    }
+
+    .section {
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-size: 15px;
+    }
+
+    input, textarea, select {
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    button {
+        padding: 12px 20px;
+        font-size: 18px;
+    }
+
+    .option {
+        flex-direction: row;
+        align-items: center;
+        padding: 12px;
+    }
+
+    .option label {
+        font-size: 15px;
+    }
+
+    .pickup-address {
+        font-size: 15px;
+    }
 }
