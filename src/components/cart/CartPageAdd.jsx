@@ -75,7 +75,7 @@ const CartPageAdd = () => {
     const calculateTotalPrice = () => {
         return cart.reduce((total, item) => {
             const price = parsePrice(item.price);
-            const quantity = item.quantity || 1;
+            const quantity = item.quantity || 0;
             return total + (price * quantity);
         }, 0).toFixed(2);
     };
@@ -92,7 +92,7 @@ const CartPageAdd = () => {
         <div className="cart-page">
             <h1>Your Cart</h1>
             {error && <p className="error-message">{error}</p>}
-            {cart.length === 0 ? (
+            {cart.length ===  0 ? (
                 <p>Your cart is empty!</p>
             ) : (
                 <div>
@@ -110,12 +110,12 @@ const CartPageAdd = () => {
                                             <button 
                                                 className='btn3' 
                                                 onClick={() => handleQuantityChange(index, -1)} 
-                                                disabled={item.quantity == 1}
+                                                disabled={item.quantity === 0}
                                                 aria-label={`Decrease quantity of ${item.name}`}
                                             >
                                                 -
                                             </button>
-                                            <span>{item.quantity || 1}</span>
+                                            <span>{item.quantity || 0}</span>
                                             <button 
                                                 className='btn3' 
                                                 onClick={() => handleQuantityChange(index, 1)}

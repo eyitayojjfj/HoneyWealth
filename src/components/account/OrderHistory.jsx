@@ -3,6 +3,7 @@ import { auth, db } from '../../FireBase';
 import { doc, getDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import './ProfilePage.css';
+import SideBar from './SideBar';
 
 const OrderHistory = () => {
     const [loading, setLoading] = useState(true);
@@ -45,14 +46,7 @@ const OrderHistory = () => {
 
     return (
         <div className='side'>
-        <div className="sidebar">
-        <h3>Profile</h3>
-        <ul>
-            <li onClick={() => navigate('/account')}>Profile Details</li>
-            <li onClick={() => navigate('/order-history')}>Order History</li>
-        </ul>
-       
-    </div>
+       <SideBar/>
         <div className="order-history">
              
 
