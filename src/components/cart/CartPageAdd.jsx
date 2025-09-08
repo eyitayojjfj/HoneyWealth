@@ -142,8 +142,14 @@ const CartPageAdd = () => {
                         <h2>Sub Total: {formatPrice(calculateTotalPrice())}</h2> 
                     </div>
                     <div className="cart-checkout">
-                        <button className='btn5' onClick={handleCheckout}>Checkout ( {formatPrice(calculateTotalPrice())} )</button>
-                    </div>
+    <button
+        className='btn5'
+        onClick={handleCheckout}
+        disabled={cart.length === 0 || calculateTotalPrice() <= 0}
+    >
+        Checkout ( {formatPrice(calculateTotalPrice())} )
+    </button>
+</div>
                 </div>
             )}
             <Link className='bck' to="/allproducts">Back to Products</Link>

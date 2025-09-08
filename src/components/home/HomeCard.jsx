@@ -110,7 +110,7 @@ const HomeCard = ({ name, img, price, func }) => {
           <span id='con'>
             <i 
               className={`fa-heart${isInWishlist ? ' fa-solid' : ' fa-regular'}`} 
-              style={{ color: isInWishlist ? 'red' : 'gray' }} 
+              style={{ color: isInWishlist ? 'red' : 'gray', }} 
               onClick={handleToggleWishlist}
             ></i>
           </span>
